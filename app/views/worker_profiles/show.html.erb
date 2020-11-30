@@ -1,2 +1,14 @@
-<h1>WorkerProfiles#show</h1>
-<p>Find me in app/views/worker_profiles/show.html.erb</p>
+
+
+<h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
+<p> <%= @worker_profile.average_score %> </p>
+  <ul>
+    <% @worker_profile.reviews.each do |review| %>
+    <li>
+      <%= review.score %>
+      <%= review.description %>
+    </li>
+    <% end %>
+  </ul>
+
+<%= link_to "Go back",   worker_profiles_path%>
