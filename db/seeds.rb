@@ -26,5 +26,25 @@ end
 
 
 50.times do
-  booking =
+  booking = Booking.new(
+    user: User.all.sample,
+    worker_profile_tag: Worker_Profile_Tag.all.sample,
+    description: Faker::Lorem.sentence,
+    confirmation: [true, false].sample,
+    date: Date.today + rand(0..30),
+    duration: (1..5).sample
+    )
+  review = Review.new(
+    score: (1..5).sample,
+    description: Faker::Lorem.sentence,
+    booking: booking,
+    user: booking.user,
+    )
+
+  booking.save!
+  review.save!
 end
+
+
+
+
