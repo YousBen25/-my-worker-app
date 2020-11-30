@@ -31,6 +31,8 @@ class WorkerProfilesController < ApplicationController
   end
 
   def destroy
+    @worker_profile.destroy
+    redirect_to "/"
   end
 
   private
