@@ -1,5 +1,5 @@
 class WorkerProfileTag < ApplicationRecord
-  belongs_to :work_profile
+  belongs_to :worker_profile
   belongs_to :tag
 
   validates :worker_profile_id, presence: true
