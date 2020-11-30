@@ -9,12 +9,12 @@ class WorkerProfileTag < ApplicationRecord
 end
 
 
-create_table "worker_profile_tags", force: :cascade do |t|
-  t.bigint "worker_profile_id", null: false
-  t.bigint "tag_id", null: false
-  t.integer "rate"
-  t.datetime "created_at", precision: 6, null: false
-  t.datetime "updated_at", precision: 6, null: false
-  t.index ["tag_id"], name: "index_worker_profile_tags_on_tag_id"
-  t.index ["worker_profile_id"], name: "index_worker_profile_tags_on_worker_profile_id"
-end
+# create_table "worker_profile_tags", force: :cascade do |t|
+#   t.bigint "worker_profile_id", null: false
+#   t.bigint "tag_id", null: false
+#   t.integer "rate"
+#   t.datetime "created_at", precision: 6, null: false
+#   t.datetime "updated_at", precision: 6, null: false
+#   t.index ["tag_id"], name: "index_worker_profile_tags_on_tag_id"
+#   t.index ["worker_profile_id"], name: "index_worker_profile_tags_on_worker_profile_id"
+# end
