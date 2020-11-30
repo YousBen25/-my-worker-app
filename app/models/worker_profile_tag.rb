@@ -1,7 +1,7 @@
 class WorkerProfileTag < ApplicationRecord
   belongs_to :worker_profile
   belongs_to :tag
-
+  has_many :bookings
   validates :worker_profile_id, presence: true
   validates :tag_id, presence: true
   validates :rate, presence: true
