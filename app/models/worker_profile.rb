@@ -6,6 +6,12 @@ class WorkerProfile < ApplicationRecord
   has_many :reviews, through: :bookings
   validates :bio, presence: true
   validates :user_id, presence: true
+
+  def average_score
+    return 0 if reviews.count.zero?
+
+    reviews.pluck(:score).sum / reviews.count
+  end
 end
 
 # create_table "worker_profiles", force: :cascade do |t|

@@ -27,8 +27,8 @@ class WorkerProfilesController < ApplicationController
 
   private
 
-  def set_worker
-    @worker = WorkerProfile.find(params[:id])
+  def set_worker_profile
+    @worker_profile = WorkerProfile.find(params[:id])
   end
 
   def worker_params

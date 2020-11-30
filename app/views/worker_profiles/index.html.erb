@@ -1,15 +1,15 @@
 <ul>
   <% @worker_profiles.each do |worker_profile| %>
     <li>
+      <%= link_to  worker_profile_path(worker_profile) do %>
       <%=worker_profile.user.first_name%>,
-      <%= worker_profile.user.last_name %>,
       <% worker_profile.worker_profile_tags.each do |worker_profile_tag| %>
         <%= worker_profile_tag.tag.name %>,
       <% end %>
-      <% worker_profile.reviews.each do |review| %>
-        <%= review.score %>
-        <%= review.description %>
+      <%= worker_profile.average_score %>
       <% end %>
     </li>
   <% end %>
 </ul>
+
+<%= link_to "go to dashboard",  dashboard_path %>
