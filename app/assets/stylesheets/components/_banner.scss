@@ -1,8 +1,22 @@
 .home-banner {
   background-image: asset-url('driver.jpg');
   background-size: cover;
-  height: 100vh;
+  height: 90vh;
   color: #eee;
   text-align: center;
-  padding-top: 40vh;
+  padding-top: 10vh;
+  display: flex;
+  flex-direction: column;
+
+  h1{
+    padding-top: 30vh;
+    font-weight: bold;
+    font-size: 48px;
+  }
+
+  .form{
+    color: blue;
+  }
 }
+
+
