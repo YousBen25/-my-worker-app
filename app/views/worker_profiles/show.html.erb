@@ -1,5 +1,6 @@
 
 
+<div class="p-5">
 <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
 <p> <%= @worker_profile.average_score %> </p>
   <ul>
@@ -10,5 +11,7 @@
     </li>
     <% end %>
   </ul>
+
+</div>
 
 <%= link_to "Go back",   worker_profiles_path%>
