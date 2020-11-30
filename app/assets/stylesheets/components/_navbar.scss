@@ -1,6 +1,8 @@
 .navbar-lewagon {
   justify-content: space-between;
-  background: white;
+  background: #6eb9e7;
+  position: fixed;
+  width: 100vw;
 }
 
 .navbar-lewagon .navbar-collapse {
@@ -9,4 +11,16 @@
 
 .navbar-lewagon .navbar-brand img {
   width: 40px;
+}
+
+.nav-item.become-worker{
+  background-color: blue;
+  border-radius: 20px;
+  font-weight: bold;
+}
+
+
+.welcome-text {
+  color: darkblue;
+  font-weight: 900;
 }
