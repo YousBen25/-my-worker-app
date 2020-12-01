@@ -1,2 +1,79 @@
-<h1>Dashboards#dashboard</h1>
-<p>Find me in app/views/dashboards/dashboard.html.erb</p>
+<div class="container", style = "margin-top: 15px">
+  <h1>Your Dashboard</h1>
+  <% if @user.worker_profile %>
+    <div class = "bookings">
+      <h2>Bookings You Need To Confirm</h2>
+      <% @user.bookings.each do |booking| %>
+        <% if booking.confirmation == false %>
+          <div class = "booking-info">
+            <p><%= booking.description %></p>
+            <p><%= booking.worker_profile.user.first_name %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+    <div class = "bookings">
+      <h2>Upcoming Confirmed Bookings</h2>
+      <% @user.bookings.each do |booking| %>
+        <% if booking.confirmation == true %>
+          <div class="booking-info">
+            <p><%= booking.description %></p>
+            <p><%= booking.worker_profile.user.first_name %></p>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
+  <% else %>
+    <div class = "bookings">
+      <h2>Unconfirmed Bookings</h2>
+      <ul>
+        <% @user.bookings.each do |booking| %>
+          <% if booking.confirmation == false %>
+            <li>
+              <div class = "booking-info">
+                <p>Description: <%= booking.description %></p>
+                <p>Worker: <%= booking.worker_profile.user.first_name %></p>
+                <p>Date: <%= booking.date %></p>
+                <p>Price: <%= booking.price %></p>
+              </div>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+    </div>
+    <div class = "bookings">
+      <h2>Upcoming Confirmed Bookings</h2>
+      <ul>
+        <% @user.bookings.each do |booking| %>
+          <% if booking.confirmation %>
+            <li>
+              <div class = "booking-info">
+                <p>Description: <%= booking.description %></p>
+                <p>Worker: <%= booking.worker_profile.user.first_name %></p>
+                <p>Date: <%= booking.date %></p>
+                <p>Price: <%= booking.price %></p>
+              </div>
+            </li>
+          <% end %>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+</div>
+
+
+<!--   create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "description"
+    t.bigint "worker_profile_tag_id", null: false
+    t.boolean "confirmation", default: false
+    t.datetime "date"
+    t.integer "duration"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.index ["worker_profile_tag_id"], name: "index_bookings_on_worker_profile_tag_id"
+  end -->
+
+
