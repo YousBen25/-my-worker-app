@@ -3,6 +3,7 @@ class WorkerProfile < ApplicationRecord
   has_many :worker_profile_tags
   has_many :tags, through: :worker_profile_tags
   has_many :bookings, through: :worker_profile_tags
+  has_many :availabilities
   has_many :reviews, through: :bookings
   validates :bio, presence: true
   validates :user_id, presence: true
