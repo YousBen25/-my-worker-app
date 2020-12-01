@@ -1,2 +1,14 @@
-<h1>WorkerProfiles#edit</h1>
-<p>Find me in app/views/worker_profiles/edit.html.erb</p>
+<div class="container">
+  <div class="row d-flex justify-content-center py-4">
+    <div class="col-md-6">
+      <h1>Update your bio:</h1>
+      <%= render "form", worker_profile: @worker_profile %>
+
+      <h1>Add  new tag <%= @worker_profile.user.first_name %>:</h1>
+        <%= simple_form_for([@worker_profile, @worker_profile_tag]) do |f| %>
+          <%= f.input :tag, collection: Tag.all, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false %>
+          <%= f.button :submit, class: "btn-success" %>
+        <% end %>
+    </div>
+  </div>
+</div>
