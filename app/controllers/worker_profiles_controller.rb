@@ -24,6 +24,7 @@ class WorkerProfilesController < ApplicationController
 
   def edit
     @worker_profile_tag = WorkerProfileTag.new
+    @availability = Availability.new
   end
 
   def update

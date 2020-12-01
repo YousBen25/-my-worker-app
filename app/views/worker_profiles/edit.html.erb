@@ -1,11 +1,12 @@
 <div class="container">
   <div class="row d-flex justify-content-center py-4">
     <div class="col-md-6">
+      <h1>Hey <%= @worker_profile.user.first_name %>, your profile should always be up to date</h1>
       <h1>Update your bio:</h1>
       <%= render "form", worker_profile: @worker_profile %>
        <p><%= @worker_profile.bio %></p>
       <br>
-      <h1>Add  new tag <%= @worker_profile.user.first_name %>:</h1>
+      <h1>Add  new tag:</h1>
         <%= simple_form_for([@worker_profile, @worker_profile_tag]) do |f| %>
           <%= f.input :tag, collection: Tag.all, input_html: { class: 'multiple-select' }, include_hidden: false %>
           <%= f.input :rate %>
@@ -13,14 +14,21 @@
         <% end %>
         <ul>
           <% @worker_profile.worker_profile_tags.each do |worker_profile_tag| %>
-          <li>
-                <span><%= worker_profile_tag.tag.name %>, <%= worker_profile_tag.rate %></span>
-                <%= link_to worker_profile_tag_path(worker_profile_tag), method: :delete, class: "delete" do %>
-                  <i class="fas fa-times text-white"></i>
-                <% end %>
-              </li>
+            <li>
+              <span><%= worker_profile_tag.tag.name %>, <%= worker_profile_tag.rate %></span>
+              <%= link_to worker_profile_tag_path(worker_profile_tag), method: :delete, class: "delete" do %>
+                <i class="fas fa-times text-white"></i>
+              <% end %>
+            </li>
           <% end %>
         </ul>
+       <h1>What's your availabilities:</h1>
+        <%= simple_form_for([@worker_profile, @availability]) do |f| %>
+          <%= f.input :day %>
+          <%= f.input :from %>
+          <%= f.input :to %>
+          <%= f.button :submit, class: "btn-success" %>
+        <% end %>
     </div>
   </div>
 </div>
