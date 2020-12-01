@@ -25,10 +25,17 @@
        <h1>What's your availabilities:</h1>
         <%= simple_form_for([@worker_profile, @availability]) do |f| %>
           <%= f.input :day %>
-          <%= f.input :from %>
-          <%= f.input :to %>
+          <%= f.input :from, as: :datetime%>
+          <%= f.input :to, as: :datetime%>
           <%= f.button :submit, class: "btn-success" %>
         <% end %>
+        <ul>
+          <%@worker_profile.availabilities.each do |availability| %>
+            <li>
+              <span>Day: <%= availability.day %>,from: <%= availability.from %> to: <%= availability.to %></span>
+            </li>
+          <% end %>
+        </ul>
     </div>
   </div>
 </div>

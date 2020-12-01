@@ -13,6 +13,6 @@ class WorkerProfileTagsController < ApplicationController
   def destroy
     @worker_profile_tag = WorkerProfileTag.find(params[:id])
     @worker_profile_tag.destroy
-    redirect_to edit_worker_profile_path(@worker_profile)
+    redirect_to edit_worker_profile_path(@worker_profile_tag.worker_profile)
   end
 end
