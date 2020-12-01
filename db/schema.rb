@@ -10,18 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_11_30_000006) do
+ActiveRecord::Schema.define(version: 2020_12_01_035716) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "availabilities", force: :cascade do |t|
     t.integer "day"
-    t.time "from"
-    t.time "to"
     t.bigint "worker_profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.datetime "from"
+    t.datetime "to"
     t.index ["worker_profile_id"], name: "index_availabilities_on_worker_profile_id"
   end
 

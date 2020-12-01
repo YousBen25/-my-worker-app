@@ -24,11 +24,12 @@ class WorkerProfilesController < ApplicationController
 
   def edit
     @worker_profile_tag = WorkerProfileTag.new
+    @availability = Availability.new
   end
 
   def update
     @worker_profile.update(worker_params)
-    redirect_to dashboard_path
+    redirect_to edit_worker_profile_path(@worker_profile)
   end
 
   def destroy
