@@ -3,25 +3,47 @@
   <% if @user.worker_profile %>
     <div class = "bookings">
       <h2>Bookings You Need To Confirm</h2>
-      <% @user.bookings.each do |booking| %>
-        <% if booking.confirmation == false %>
-          <div class = "booking-info">
-            <p><%= booking.description %></p>
-            <p><%= booking.worker_profile.user.first_name %></p>
-          </div>
-        <% end %>
+      <ul>
+        <% @user.bookings.each do |booking| %>
+          <% if booking.confirmation == false %>
+            <li>
+              <div class="card-product">
+                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                <div class="card-product-infos">
+                  <h2><%= booking.description %></h2>
+                  <p>User: <%= booking.user.first_name %></p>
+                  <p>Date: <%= booking.date %></p>
+                  <p>Price: <%= booking.price %></p>
+                </div>
+                <div class = "card-confirm">
+                  <button type="button" class="btn btn-success">Confirm</button>
+                </div>
+              </div>
+            </li>
+          <% end %>
+        </ul>
       <% end %>
     </div>
     <div class = "bookings">
       <h2>Upcoming Confirmed Bookings</h2>
-      <% @user.bookings.each do |booking| %>
-        <% if booking.confirmation == true %>
-          <div class="booking-info">
-            <p><%= booking.description %></p>
-            <p><%= booking.worker_profile.user.first_name %></p>
-          </div>
+      <ul>
+        <% @user.bookings.each do |booking| %>
+          <% if booking.confirmation == true %>
+            <li>
+              <div class="card-product">
+                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                <div class="card-product-infos">
+                  <h2><%= booking.description %></h2>
+                  <p>User: <%= booking.user.first_name %></p>
+                  <p>Date: <%= booking.date %></p>
+                  <p>Price: <%= booking.price %></p>
+                </div>
+              </div>
+              </div>
+            </li>
+          <% end %>
         <% end %>
-      <% end %>
+      </ul>
     </div>
   <% else %>
     <div class = "bookings">
