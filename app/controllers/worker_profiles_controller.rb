@@ -13,16 +13,27 @@ class WorkerProfilesController < ApplicationController
   end
 
   def create
-    @worker_profile = WorkerProfile.create!(worker_params)
+    @worker_profile = WorkerProfile.new(worker_params)
+    @worker_profile.save
+    if @worker_profile.save
+      redirect_to dashboard_path
+    else
+      render :new
+    end
   end
 
   def edit
+    @worker_profile_tag = WorkerProfileTag.new
   end
 
   def update
+    @worker_profile.update(worker_params)
+    redirect_to dashboard_path
   end
 
   def destroy
+    @worker_profile.destroy
+    redirect_to "/"
   end
 
   private
