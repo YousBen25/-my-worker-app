@@ -1,4 +1,4 @@
-<div class="home-banner">
+<div class="home-banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(' <%= cl_image_path "driver_cdgjui" %>')">
   <div id='job-booking'>
     <form action="" class = "search-form">
       <input type="text" name = "address" placeholder = 'Address'>
@@ -20,7 +20,7 @@
   <div class="row">
     <% @tags.each do |tag| %>
     <div class="col-sm-12 col-md-6 col-lg-4 mb-3">
-      <div class="card-profile" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.8)), url(https://media.gettyimages.com/photos/circa-1925-mugshot-of-american-gangster-al-capone-smiling-in-a-jacket-picture-id3224921)">
+      <div class="card-profile" style="background-image: linear-gradient(rgba(0,0,0,0), rgba(0,0,0,0.8)), url(' <%= cl_image_path "Jardinier_pwu8ht" %>')">
         <div class ="card-title"><%= tag.name %></div>
         <div class ="card-subtitle"> Clean your house in a few hours, with guaranteed quality.</div>
       </div>
@@ -37,7 +37,7 @@
 
 
 <!--
-<%= link_to worker_profiles_path(tag: "dssd") do %>
+<#%= link_to worker_profiles_path(tag: "dssd") do %>
   <div></div>
-<% end %>
+<#% end %>
   -->

@@ -22,9 +22,12 @@
   </head>
 
   <body>
+    <div id="page-container">
     <%= render "shared/navbar" %>
-    <%= yield %>
+    <div id="content-wrap">
+      <%= yield %>
+    </div>
     <%= render "shared/footer" %>
-   
+    </div>
   </body>
 </html>
