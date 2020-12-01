@@ -23,7 +23,6 @@ const initFlatpickr = () => {
         }
     ],
       onChange: (selectedDates) => {
-        debugger
         const times = selectedDates[0].getDay()
         availabilities[`${times}`].forEach((time) => {
           injectThings(time);
