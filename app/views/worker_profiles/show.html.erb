@@ -6,9 +6,15 @@
             <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
 
 
+<<<<<<< HEAD
             <#%= @worker_profile.bio %>
             <p>
               <#% @worker_profile.average_score.times do |i|%>
+=======
+            <%= @worker_profile.bio %>
+            <p>
+              <#% @worker_profile.average_score.times do |i|%>
+>>>>>>> master
                 <span class="fa fa-star checked"></span>
               <#% end %>
               <#%(5-@worker_profile.average_score).times do |i|%>
@@ -33,10 +39,12 @@
     </div>
 
   </div>
+<<<<<<< HEAD
 
 
 </div>
- -->
+-->
+
 
 <div class="container">
   <div class="row">
@@ -46,19 +54,22 @@
         <div>
           <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
           <% @worker_profile.average_score.times do |i|%>
-            <span class="fa fa-star checked"></span>
+          <span class="fa fa-star checked"></span>
           <% end %>
           <%(5-@worker_profile.average_score).times do |i|%>
-            <span class="fa fa-star"></span>
+          <span class="fa fa-star"></span>
           <% end %>
           <p><%= @worker_profile.bio %></p>
         </div>
       </div>
       <div class="booking-container">
         <%= simple_form_for( @booking) do |f| %>
-          <%= f.association :worker_profile_tag, collection: @worker_profile.tags %>
-          <div data-workingdays="<%= @working_hash.to_json %>" id = "working-days"></div>
-          <%= f.input :date, as: :string %>
+        <%= f.association :worker_profile_tag, collection: @worker_profile.tags %>
+        <div data-workingdays="<%= @working_hash.to_json %>" id = "working-days"></div>
+        <%= f.input :date, as: :string %>
+        <%= f.input :from, as: :integer, input_html: {value: ""}%>
+        <%= f.input :duration, as: :integer%>
+        <%= f.submit %>
         <% end %>
       </div>
     </div>
@@ -73,10 +84,10 @@
           <% @worker_profile.reviews.each do |review| %>
           <div>
             <%review.score.times do |i|%>
-              <span class="fa fa-star checked"></span>
+            <span class="fa fa-star checked"></span>
             <% end %>
             <%(5-review.score).times do |i|%>
-              <span class="fa fa-star"></span>
+            <span class="fa fa-star"></span>
             <% end %>
             <%= review.description %>
           </div>
@@ -84,7 +95,11 @@
         </div>
       </div>
     </div>
-    <%= link_to "Go back",   worker_profiles_path, class: "btn btn-success"%>
   </div>
+    <%= link_to "Go back",   worker_profiles_path, class: "btn btn-success"%>
+</div>
+
+<div id = "available">
+
 </div>
 
