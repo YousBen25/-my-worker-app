@@ -1,13 +1,13 @@
 class WorkerProfileTagsController < ApplicationController
   def create
     @worker_profile = WorkerProfile.find(params[:worker_profile_id])
-    @tags = Tag.find(params[:worker_profile_tag][:tag])
-    @tags.each do |tag|
-      @worker_profile_tag = WorkerProfileTag.new
-      @worker_profile_tag.worker_profile = @worker_profile
-      @worker_profile_tag.tag = tag
-      @worker_profile_tag.save!
-    end
+    tag = Tag.find(params[:worker_profile_tag][:tag])
+    @worker_profile_tag = WorkerProfileTag.new
+    @worker_profile_tag.worker_profile = @worker_profile
+    @worker_profile_tag.tag = tag
+    @worker_profile_tag.save
+    redirect_to edit_worker_profile_path(@worker_profile)
+
   end
 
   def destroy

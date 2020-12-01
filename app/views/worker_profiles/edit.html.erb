@@ -3,10 +3,11 @@
     <div class="col-md-6">
       <h1>Update your bio:</h1>
       <%= render "form", worker_profile: @worker_profile %>
-
+      <br>
       <h1>Add  new tag <%= @worker_profile.user.first_name %>:</h1>
         <%= simple_form_for([@worker_profile, @worker_profile_tag]) do |f| %>
-          <%= f.input :tag, collection: Tag.all, input_html: { multiple: true, class: 'multiple-select' }, include_hidden: false %>
+          <%= f.input :tag, collection: Tag.all, input_html: { class: 'multiple-select' }, include_hidden: false %>
+          <%= f.input :rate %>
           <%= f.button :submit, class: "btn-success" %>
         <% end %>
     </div>
