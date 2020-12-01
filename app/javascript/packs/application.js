@@ -27,6 +27,7 @@ require("channels")
 import "bootstrap";
 import flatpickr from "flatpickr";
 import { initSelect2 } from '../plugins/select2tagger.js'
+import { initFlatpickr } from '../plugins/initflatpickr.js'
 
 
 
@@ -36,4 +37,6 @@ import { initSelect2 } from '../plugins/select2tagger.js'
 document.addEventListener('turbolinks:load', () => {
   // Call your functions here, e.g:
   initSelect2();
+  initFlatpickr();
+
 });

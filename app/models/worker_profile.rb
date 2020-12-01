@@ -14,6 +14,18 @@ class WorkerProfile < ApplicationRecord
 
     reviews.pluck(:score).sum / reviews.count
   end
+
+  def calculate_availabilities
+    working_hash = {}
+    self.availabilities.each do |availability|
+      if working_hash[availability.day.to_s]
+         working_hash[availability.day.to_s] << "#{availability.from.hour}-#{availability.to.hour}"
+      else
+         working_hash[availability.day.to_s] = ["#{availability.from.hour}-#{availability.to.hour}"]
+      end
+    end
+    working_hash
+  end
 end
 
 # create_table "worker_profiles", force: :cascade do |t|
