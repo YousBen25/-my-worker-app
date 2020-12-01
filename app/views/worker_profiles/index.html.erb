@@ -5,40 +5,44 @@
 <ul>
   <% @worker_profiles.each do |worker_profile| %>
     <li>
-      <div class="card-service">
-        <img src="https://static.wikia.nocookie.net/metalgear/images/f/f1/TPPVenomSnakeMB.png" />
-        <div class="card-service-infos">
-          <h2>
-            <%=worker_profile.user.first_name%> |
-            <%worker_profile.average_score.times do |i|%>
-              <span class="fa fa-star checked"></span>
-            <% end %>
-            <%(5-worker_profile.average_score).times do |i|%>
-              <span class="fa fa-star"></span>
-            <% end %>
-          </h2>
-          <br>
-          <p>
-            Skills :
-            <% worker_profile.worker_profile_tags.each_with_index do |worker_profile_tag, idx| %>
-              <strong><%=worker_profile_tag.tag.name%></strong><%if (idx + 1) == worker_profile.worker_profile_tags.length%>.<% else %>,<% end %>
-            <% end %>
-          </p>
-          <br>
-          <h4 class = "card-service-area">Serving Canggu area</h4>
-        </div>
-        <div class ="card-service-reviews">
-          <div class ="card-service-review review-one">
-            <h2>Aleksa</h2>
-            <p class = "review-content">Monumental service, smooth communications</p>
+      <div class = "container">
+        <div class="card-service">
+          <div class="card-service-picture col">
+            <img src="https://static.wikia.nocookie.net/metalgear/images/f/f1/TPPVenomSnakeMB.png" />
           </div>
-          <div class ="card-service-review review-two">
-            <h2>Soerjadi</h2>
-            <p class = "review-content">Now my pool is beyond repair. Thanks for nothing, bro</p>
+          <div class="card-service-infos col-4">
+            <h2 class = "card-service-infos-header">
+              <%=link_to worker_profile.user.first_name, worker_profile_path(worker_profile.id)%> |
+              <%worker_profile.average_score.times do |i|%>
+                <span class="fa fa-star checked"></span>
+              <% end %>
+              <%(5-worker_profile.average_score).times do |i|%>
+                <span class="fa fa-star"></span>
+              <% end %>
+            </h2>
+            <br>
+            <p>
+              Skills :
+              <% worker_profile.worker_profile_tags.each_with_index do |worker_profile_tag, idx| %>
+                <strong><%=worker_profile_tag.tag.name%></strong><%if (idx + 1) == worker_profile.worker_profile_tags.length%>.<% else %>,<% end %>
+              <% end %>
+            </p>
+
+            <p class = "card-service-area">Serving Canggu area</p>
           </div>
-          <div class ="card-service-review review-three">
-            <h2>Kuze</h2>
-            <p class = "review-content">Hard working guy, my garden is now Zen-certified</p>
+          <div class ="card-service-reviews col-6">
+            <div class ="card-service-review review-one">
+              <h2>Aleksa</h2>
+              <p class = "review-content">Monumental service, smooth communications</p>
+            </div>
+            <div class ="card-service-review review-two">
+              <h2>Soerjadi</h2>
+              <p class = "review-content">Now my pool is beyond repair. Thanks for nothing, bro</p>
+            </div>
+            <div class ="card-service-review review-three">
+              <h2>Kuze</h2>
+              <p class = "review-content">Hard working guy, my garden is now Zen-certified</p>
+            </div>
           </div>
         </div>
       </div>
