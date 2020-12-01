@@ -30,11 +30,14 @@
         <% @user.bookings.each do |booking| %>
           <% if booking.confirmation == false %>
             <li>
-              <div class = "booking-info">
-                <p>Description: <%= booking.description %></p>
-                <p>Worker: <%= booking.worker_profile.user.first_name %></p>
-                <p>Date: <%= booking.date %></p>
-                <p>Price: <%= booking.price %></p>
+              <div class="card-product">
+                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                <div class="card-product-infos">
+                  <h2><%= booking.description %></h2>
+                  <p>Worker: <%= booking.worker_profile.user.first_name %></p>
+                  <p>Date: <%= booking.date %></p>
+                  <p>Price: <%= booking.price %></p>
+                </div>
               </div>
             <% end %>
           </li>
@@ -47,16 +50,20 @@
         <% @user.bookings.each do |booking| %>
           <% if booking.confirmation %>
             <li>
-              <div class = "booking-info">
-                <p>Description: <%= booking.description %></p>
-                <p>Worker: <%= booking.worker_profile.user.first_name %></p>
-                <p>Date: <%= booking.date %></p>
-                <p>Price: <%= booking.price %></p>
+              <div class="card-product">
+                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                <div class="card-product-infos">
+                  <h2><%= booking.description %></h2>
+                  <p>Worker: <%= booking.worker_profile.user.first_name %></p>
+                  <p>Date: <%= booking.date %></p>
+                  <p>Price: <%= booking.price %></p>
+                </div>
               </div>
             </li>
           <% end %>
         <% end %>
       </ul>
+
     </div>
   <% end %>
 </div>
