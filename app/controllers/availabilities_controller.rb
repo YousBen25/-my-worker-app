@@ -21,6 +21,12 @@ class AvailabilitiesController < ApplicationController
     redirect_to edit_worker_profile_path(@worker_profile)
   end
 
+  def destroy
+    @availability = Availability.find(params[:id])
+    @availability.destroy
+    redirect_to edit_worker_profile_path(@availability.worker_profile)
+  end
+
   def availability_params
     params.require(:availability).permit(:day)
   end
