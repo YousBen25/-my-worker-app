@@ -1,6 +1,7 @@
 class Booking < ApplicationRecord
   belongs_to :user
   belongs_to :worker_profile_tag
+  delegate :worker_profile, to: :worker_profile_tag
   has_one :review
   validates :description, presence: true
   validates :date, presence: true
