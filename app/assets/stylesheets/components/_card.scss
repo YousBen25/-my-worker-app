@@ -221,17 +221,19 @@ transition: 0.3s;
 
 .card-service {
     overflow: hidden;
-    height: 250px;
+    height: 150px;
+    width: 750px;
     background: white;
     box-shadow: 0 0 15px rgba(0,0,0,0.2);
     display: flex;
     align-items: center;
     border-radius: 10px;
+    margin: auto;
   }
 
   .card-service img {
     height: 100%;
-    width: 200px;
+    width: 100px;
     object-fit: cover;
     border-radius: 50%;
     transition: 0.5s;
@@ -242,13 +244,13 @@ transition: 0.3s;
   }
 
   .card-service h2 {
-    font-size: 30px;
     font-weight: bold;
     margin: 0;
+    font-size: 15px;
   }
 
   .card-service p {
-    font-size: 20px;
+    font-size: 12px;
     line-height: 1.4;
     opacity: .7;
     margin-bottom: 0;
@@ -257,7 +259,7 @@ transition: 0.3s;
 
   .card-service .card-service-infos {
     margin: auto 0;
-    padding: 15px;
+    padding: 5px;
   }
 
   .checked {
@@ -268,13 +270,15 @@ transition: 0.3s;
     display: flex;
     width: 50%;
     justify-content: center;
-    padding-left: 25px;
-    padding-top: 10px;
     padding-bottom: 10px;
   }
 
   .card-service-review {
-    border-left: 1px solid grey;
+    border-left: 3px solid lightgray;
     padding-left: 5px;
+    padding-right: 5px;
   }
 
+  ul {
+    list-style-type: none;
+}
