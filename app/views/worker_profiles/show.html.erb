@@ -1,23 +1,21 @@
 
-
-<div class="p-5">
-<h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
-<p> <%= @worker_profile.average_score %> </p>
-  <ul>
-    <% @worker_profile.reviews.each do |review| %>
-    <li>
-      <%= review.score %>
-      <%= review.description %>
-    </li>
-    <% end %>
-  </ul>
-</div>
 <div>
-   <%= simple_form_for [ @worker_profile, @booking] do |f| %>
-        <%= f.input :date %>
-        <%= f.input :duration %>
-        <%= f.input :price %>
-        <%= f.button :submit, class: "btn-success" %>
+  <div class="p-5">
+    <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
+    <p> <%= @worker_profile.average_score %> </p>
+    <ul>
+      <% @worker_profile.reviews.each do |review| %>
+      <li>
+        <%= review.score %>
+        <%= review.description %>
+      </li>
       <% end %>
+    </ul>
+  </div>
+
+  <div>
+    <h2>Booking Form</h2>
+  </div>
+
+  <%= link_to "Go back", worker_profiles_path%>
 </div>
-<%= link_to "Go back", worker_profiles_path%>
