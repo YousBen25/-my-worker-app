@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_01_061724) do
+ActiveRecord::Schema.define(version: 2020_12_01_061724)
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,8 +41,8 @@ ActiveRecord::Schema.define(version: 2020_12_01_061724) do
     t.bigint "worker_profile_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.datetime "from"
-    t.datetime "to"
+    t.time "from"
+    t.time "to"
     t.index ["worker_profile_id"], name: "index_availabilities_on_worker_profile_id"
   end
 
