@@ -7,7 +7,7 @@
 
 
             <%= @worker_profile.bio %>
-            <p> 
+            <p>
               <% @worker_profile.average_score.times do |i|%>
                 <span class="fa fa-star checked"></span>
               <% end %>
@@ -33,7 +33,7 @@
     </div>
 
   </div>
-   
+
     <%= link_to "Go back",   worker_profiles_path%>
 </div>
 
@@ -42,7 +42,14 @@
   <%= f.association :worker_profile_tag, collection: @worker_profile.tags %>
   <div data-workingdays="<%= @working_hash.to_json %>" id = "working-days"></div>
   <%= f.input :date, as: :string %>
+  <%= f.input :from, as: :integer, input_html: {value: ""}%>
+  <%= f.input :duration, as: :integer%>
+  <%= f.submit %>
 <% end %>
 
 <%= link_to "Go back",   worker_profiles_path%>
+
+<div id = "available">
+
+</div>
 
