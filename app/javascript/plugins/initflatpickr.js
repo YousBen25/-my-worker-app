@@ -19,7 +19,6 @@ const initFlatpickr = () => {
 
     });
   }
-  input.onChange(alert("Handler for .change() called."));
 }
 
 export { initFlatpickr };
