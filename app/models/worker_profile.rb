@@ -5,6 +5,7 @@ class WorkerProfile < ApplicationRecord
   has_many :bookings, through: :worker_profile_tags
   has_many :availabilities
   has_many :reviews, through: :bookings
+  has_one_attached :photo
   validates :bio, presence: true
   validates :user_id, presence: true
 
