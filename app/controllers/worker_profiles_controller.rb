@@ -23,6 +23,7 @@ class WorkerProfilesController < ApplicationController
   end
 
   def edit
+    @worker_profile_tag = WorkerProfileTag.new
   end
 
   def update
