@@ -11,7 +11,13 @@
     </li>
     <% end %>
   </ul>
-  <%= link_to "Book", new_worker_profile_booking_path(@worker_profile) %>
 </div>
-
+<div>
+   <%= simple_form_for [ @worker_profile, @booking] do |f| %>
+        <%= f.input :date %>
+        <%= f.input :duration %>
+        <%= f.input :price %>
+        <%= f.button :submit, class: "btn-success" %>
+      <% end %>
+</div>
 <%= link_to "Go back", worker_profiles_path%>

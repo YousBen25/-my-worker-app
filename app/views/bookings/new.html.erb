@@ -1,15 +1,2 @@
 <h1>Bookings#new</h1>
 <p>Find me in app/views/bookings/new.html.erb</p>
-<div class="container">
-  <div class="row d-flex justify-content-center py-4">
-    <div class="col-md-6">
-      <h1>Request to book:</h1>
-      <%= simple_form_for [@worker_profile, @booking] do |f| %>
-        <%= f.input :date %>
-        <%= f.input :duration %>
-        <%= f.input :price %>
-        <%= f.button :submit, class: "btn-success" %>
-      <% end %>
-    </div>
-  </div>
-</div>
