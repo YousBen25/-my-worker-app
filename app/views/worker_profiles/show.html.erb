@@ -1,4 +1,4 @@
-<div class="container">
+<!-- <div class="container">
   <div class="cards" style="grid-template-columns: 2fr 1fr">
     <div class="card-service">
       <div class="p-5">
@@ -6,24 +6,30 @@
             <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
 
 
+<<<<<<< HEAD
+            <#%= @worker_profile.bio %>
+            <p>
+              <#% @worker_profile.average_score.times do |i|%>
+=======
             <%= @worker_profile.bio %>
             <p>
-              <% @worker_profile.average_score.times do |i|%>
+              <#% @worker_profile.average_score.times do |i|%>
+>>>>>>> master
                 <span class="fa fa-star checked"></span>
-              <% end %>
-              <%(5-@worker_profile.average_score).times do |i|%>
+              <#% end %>
+              <#%(5-@worker_profile.average_score).times do |i|%>
                 <span class="fa fa-star"></span>
-              <% end %>
-              (<%= @worker_profile.reviews.size %>)
+              <#% end %>
+              (<#%= @worker_profile.reviews.size %>)
             </p>
 
             <ul>
-              <% @worker_profile.reviews.each do |review| %>
+              <#% @worker_profile.reviews.each do |review| %>
               <li>
-                <%= review.score %>
-                <%= review.description %>
+                <#%= review.score %>
+                <#%= review.description %>
               </li>
-              <% end %>
+              <#% end %>
             </ul>
       </div>
     </div>
@@ -33,21 +39,65 @@
     </div>
 
   </div>
+<<<<<<< HEAD
 
-    <%= link_to "Go back",   worker_profiles_path%>
+
 </div>
+-->
 
 
-<%= simple_form_for( @booking) do |f| %>
-  <%= f.association :worker_profile_tag, collection: @worker_profile.tags %>
-  <div data-workingdays="<%= @working_hash.to_json %>" id = "working-days"></div>
-  <%= f.input :date, as: :string %>
-  <%= f.input :from, as: :integer, input_html: {value: ""}%>
-  <%= f.input :duration, as: :integer%>
-  <%= f.submit %>
-<% end %>
-
-<%= link_to "Go back",   worker_profiles_path%>
+<div class="container">
+  <div class="row">
+    <div class="col-md-10 mx-auto d-flex">
+      <div class="profile-container d-flex">
+        <img src="https://static.wikia.nocookie.net/metalgear/images/f/f1/TPPVenomSnakeMB.png" />
+        <div>
+          <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
+          <% @worker_profile.average_score.times do |i|%>
+          <span class="fa fa-star checked"></span>
+          <% end %>
+          <%(5-@worker_profile.average_score).times do |i|%>
+          <span class="fa fa-star"></span>
+          <% end %>
+          <p><%= @worker_profile.bio %></p>
+        </div>
+      </div>
+      <div class="booking-container">
+        <%= simple_form_for( @booking) do |f| %>
+        <%= f.association :worker_profile_tag, collection: @worker_profile.tags %>
+        <div data-workingdays="<%= @working_hash.to_json %>" id = "working-days"></div>
+        <%= f.input :date, as: :string %>
+        <%= f.input :from, as: :integer, input_html: {value: ""}%>
+        <%= f.input :duration, as: :integer%>
+        <%= f.submit %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-10 mx-auto">
+      <div class="review-container">
+        <div>
+          <h2>Reviews:</h2>
+        </div>
+        <div>
+          <% @worker_profile.reviews.each do |review| %>
+          <div>
+            <%review.score.times do |i|%>
+            <span class="fa fa-star checked"></span>
+            <% end %>
+            <%(5-review.score).times do |i|%>
+            <span class="fa fa-star"></span>
+            <% end %>
+            <%= review.description %>
+          </div>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+    <%= link_to "Go back",   worker_profiles_path, class: "btn btn-success"%>
+</div>
 
 <div id = "available">
 
