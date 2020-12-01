@@ -5,6 +5,7 @@
             <img src="https://static.wikia.nocookie.net/metalgear/images/f/f1/TPPVenomSnakeMB.png" />
             <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
 
+
             <%= @worker_profile.bio %>
             <p>
               <% @worker_profile.average_score.times do |i|%>
@@ -58,8 +59,13 @@
   </div>
   <div class="row">
     <div class="col-md-10 mx-auto">
-
+      <%= simple_form_for( @booking) do |f| %>
+        <%= f.association :worker_profile_tag, collection: @worker_profile.tags %>
+        <div data-workingdays="<%= @working_hash.to_json %>" id = "working-days"></div>
+        <%= f.input :date, as: :string %>
+      <% end %>
     </div>
   </div>
-  <%= link_to "Go back",   worker_profiles_path%>
+<%= link_to "Go back",   worker_profiles_path%>
 </div>
+

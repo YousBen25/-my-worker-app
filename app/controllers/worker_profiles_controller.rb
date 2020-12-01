@@ -6,6 +6,20 @@ class WorkerProfilesController < ApplicationController
   end
 
   def show
+    @user = current_user
+    @booking = Booking.new
+    @working_hash = @worker_profile.calculate_availabilities
+    # @working_days.each do |day|
+    #   @worker_profile.availabilities.each do |availability|
+    #     if(availability.day == day)
+    #       if(@working_hash["#{day}"])
+    #         @working_hash["#{day}"].push("#{availability.from}-#{availability.to}")
+    #       else
+    #         @working_hash["#{day}"] = ["#{availability.from}-#{availability.to}"]
+    #       end
+    #     end
+    #   end
+    # end
   end
 
   def new
