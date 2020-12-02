@@ -2,7 +2,15 @@ class WorkerProfilesController < ApplicationController
   before_action :set_worker_profile, only: [:show, :edit, :update, :destroy]
 
   def index
-    @worker_profiles = WorkerProfile.all
+    if params[:address].present? && params[:job_type].present?
+      @worker_profiles = WorkerProfile.search_by_address(params[:address]).search_by_job(params[:job_type])
+    elsif params[:address].present?
+      @worker_profiles = WorkerProfile.search_by_address(params[:address])
+    elsif params[:job_type].present?
+      @worker_profiles = WorkerProfile.search_by_job(params[:job_type])
+    else
+      @worker_profiles = WorkerProfile.all
+    end
 
     @markers = @worker_profiles.geocoded.map do |worker_location|
       {
@@ -37,10 +45,10 @@ class WorkerProfilesController < ApplicationController
   def create
     @worker_profile = WorkerProfile.new(worker_params)
     @worker_profile.user = current_user
-    @worker_profile.save
     if @worker_profile.save
       redirect_to dashboard_path
     else
+      raise
       render :new
     end
   end
