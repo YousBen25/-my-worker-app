@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 <div class = container>
   <div class="container mr-7 col-5">
     <h1>Booking Summary</h1>
@@ -7,6 +8,16 @@
       <p>User: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
       <p>Booking Description: <%= @booking.description %></p>
     </div>
+=======
+<div class="container mr-7 col-5">
+  <h1>Booking Summary</h1>
+  <div>
+    <h4>Booking Date: <%= @booking.date %></h4>
+    <p>Worker: <%= @booking.worker_profile_tag.worker_profile.user.first_name %> <%= @booking.worker_profile_tag.worker_profile.user.last_name %></p>
+    <p>User: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+    <p>Booking Description: <%= @booking.description %></p>
+    <p>Address: <%= @booking.address %></p>
+>>>>>>> dd49eb48519ead5277cfd69837f719ff15ccfbe3
     <%= link_to "Edit", edit_booking_path(@booking.id) %>
   </div>
 

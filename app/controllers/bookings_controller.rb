@@ -9,7 +9,7 @@ class BookingsController < ApplicationController
     # date = booking_vars["date"].split("-")
     # date = date.map(&:to_i)
     # time = booking_vars["from"].to_i
-    workertag = WorkerProfileTag.find(booking_vars[:worker_profile_tag_id])
+    workertag = WorkerProfileTag.find(params[:booking][:worker_profile_tag_id])
     @worker_profile= workertag.worker_profile
     @booking = Booking.new(custom_booking_params)
     @booking.user = current_user
@@ -86,7 +86,8 @@ class BookingsController < ApplicationController
     {
       description: booking_vars["description"],
       date: DateTime.new(date[0], date[1], date[2], time),
-      duration: booking_vars["duration"]
+      duration: booking_vars["duration"],
+      address: booking_vars["address"],
 
     }
   end
