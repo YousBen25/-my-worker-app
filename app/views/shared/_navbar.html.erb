@@ -16,7 +16,7 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="nav-link" href="#">Become a worker!</a>
+        <%= link_to "Become a worker!", new_worker_profile_path, class: "nav-link" %>
       </li>
       <li class="nav-item dropdown">
         <img class="avatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://memegenerator.net/img/images/12077751.jpg" />
@@ -24,7 +24,7 @@
           <a class="dropdown-item" href=<%=new_user_registration_path%>>Register</a>
           <a class="dropdown-item" href=<%=new_user_session_path%>>Sign in</a>
           <a class="dropdown-item" href="<%=destroy_user_session_path%>" data-method = "delete">Log Out</a>
-          <a class="dropdown-item" href="#">Become a worker</a>
+          <%= link_to "Become a worker!", new_worker_profile_path, class: "nav-link" %>
         </div>
       </li>
     </ul>

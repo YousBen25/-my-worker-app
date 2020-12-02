@@ -71,7 +71,7 @@
           <% end %>
           <p class="text-align-justify"><%= @worker_profile.bio %></p>
         </div>
-        <%= cl_image_tag("Jardinier_pwu8ht",:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
+        <%= cl_image_tag @worker_profile.photo.key, :width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb"%>
       </div>
       <div class="booking-container">
         <%= simple_form_for( @booking) do |f| %>

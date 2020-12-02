@@ -10,7 +10,13 @@ class Booking < ApplicationRecord
   validates :price, presence: true
   validates :price, numericality: {greater_than_or_equal_to: 1}
 
+  def completed?
+    confirmation
+  end
 
+  def completed!
+    self.comfirmation = true
+  end
 end
 
 

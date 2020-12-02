@@ -7,7 +7,6 @@ class WorkerProfile < ApplicationRecord
   has_many :reviews, through: :bookings
   has_one_attached :photo
   validates :bio, presence: true
-  validates :user_id, presence: true
 
   def average_score
     return 0 if reviews.count.zero?

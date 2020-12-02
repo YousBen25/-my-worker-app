@@ -1,94 +1,73 @@
+
+
+
+
 <div class="container", style = "margin-top: 15px">
   <h1>Your Dashboard</h1>
-  <% if @user.worker_profile %>
     <div class = "bookings">
-      <h2>Bookings You Need To Confirm</h2>
+      <h2>Bookings You have done</h2>
       <ul>
-        <% @user.bookings.each do |booking| %>
-          <% if booking.confirmation == false %>
+        <% @booking_made.each do |booking| %>
             <li>
               <div class="card-product">
                 <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
                 <div class="card-product-infos">
                   <h2><%= booking.description %></h2>
-                  <p>User: <%= booking.user.first_name %></p>
+                  <p>Your name: <%= booking.user.first_name %></p>
                   <p>Date: <%= booking.date %></p>
                   <p>Price: <%= booking.price %></p>
                 </div>
-                <div class = "card-confirm">
-                  <button type="button" class="btn btn-success">Confirm</button>
-                </div>
               </div>
             </li>
-          <% end %>
+        <% end %>
         </ul>
-      <% end %>
     </div>
-    <div class = "bookings">
-      <h2>Upcoming Confirmed Bookings</h2>
-      <ul>
-        <% @user.bookings.each do |booking| %>
-          <% if booking.confirmation == true %>
-            <li>
-              <div class="card-product">
-                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-                <div class="card-product-infos">
-                  <h2><%= booking.description %></h2>
-                  <p>User: <%= booking.user.first_name %></p>
-                  <p>Date: <%= booking.date %></p>
-                  <p>Price: <%= booking.price %></p>
+    <% if @worker_profile %>
+      <div class = "bookings">
+        <h2>Bookings ive received</h2>
+        <ul>
+          <% @booking_received.each do |booking| %>
+              <li>
+                <div class="card-product">
+                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                  <div class="card-product-infos">
+                    <h2><%= booking.description %></h2>
+                    <p>Your name: <%= booking.user.first_name %></p>
+                    <p>Date: <%= booking.date %></p>
+                    <p>Price: <%= booking.price %></p>
+                  </div>
                 </div>
-              </div>
-              </div>
-            </li>
+              </li>
+              <% if booking.confirmation? %>
+                <%= link_to "confirm",  confirm_booking_path(booking) %>
+              <% else %>
+              <%= link_to "reject", reject_booking_path(booking)%>
+              <% end %>
           <% end %>
-        <% end %>
-      </ul>
-    </div>
-  <% else %>
-    <div class = "bookings">
-      <h2>Unconfirmed Bookings</h2>
-      <ul>
-        <% @user.bookings.each do |booking| %>
-          <% if booking.confirmation == false %>
-            <li>
-              <div class="card-product">
-                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-                <div class="card-product-infos">
-                  <h2><%= booking.description %></h2>
-                  <p>Worker: <%= booking.worker_profile.user.first_name %></p>
-                  <p>Date: <%= booking.date %></p>
-                  <p>Price: <%= booking.price %></p>
-                </div>
-              </div>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-    </div>
-    <div class = "bookings">
-      <h2>Upcoming Confirmed Bookings</h2>
-      <ul>
-        <% @user.bookings.each do |booking| %>
-          <% if booking.confirmation %>
-            <li>
-              <div class="card-product">
-                <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-                <div class="card-product-infos">
-                  <h2><%= booking.description %></h2>
-                  <p>Worker: <%= booking.worker_profile.user.first_name %></p>
-                  <p>Date: <%= booking.date %></p>
-                  <p>Price: <%= booking.price %></p>
-                </div>
-              </div>
-            </li>
-          <% end %>
-        <% end %>
-      </ul>
-
-    </div>
-  <% end %>
+          </ul>
+      </div>
+    <% end %>
 </div>
+
+
+<!--   create_table "bookings", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.text "description"
+    t.bigint "worker_profile_tag_id", null: false
+    t.boolean "confirmation", default: false
+    t.datetime "date"
+    t.integer "duration"
+    t.integer "price"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["user_id"], name: "index_bookings_on_user_id"
+    t.index ["worker_profile_tag_id"], name: "index_bookings_on_worker_profile_tag_id"
+  end -->
+
+
+
+
+
 
 
 <!--   create_table "bookings", force: :cascade do |t|
