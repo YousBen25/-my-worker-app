@@ -1,51 +1,3 @@
-<!-- <div class="container">
-  <div class="cards" style="grid-template-columns: 2fr 1fr">
-    <div class="card-service">
-      <div class="p-5">
-            <img src="https://static.wikia.nocookie.net/metalgear/images/f/f1/TPPVenomSnakeMB.png" />
-            <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
-
-
-<<<<<<< HEAD
-            <#%= @worker_profile.bio %>
-            <p>
-              <#% @worker_profile.average_score.times do |i|%>
-=======
-            <%= @worker_profile.bio %>
-            <p>
-              <#% @worker_profile.average_score.times do |i|%>
->>>>>>> master
-                <span class="fa fa-star checked"></span>
-              <#% end %>
-              <#%(5-@worker_profile.average_score).times do |i|%>
-                <span class="fa fa-star"></span>
-              <#% end %>
-              (<#%= @worker_profile.reviews.size %>)
-            </p>
-
-            <ul>
-              <#% @worker_profile.reviews.each do |review| %>
-              <li>
-                <#%= review.score %>
-                <#%= review.description %>
-              </li>
-              <#% end %>
-            </ul>
-      </div>
-    </div>
-
-    <div>
-      <h2>Booking Form</h2>
-    </div>
-
-  </div>
-<<<<<<< HEAD
-
-
-</div>
--->
-
-
 <div class="container">
   <div class="row">
     <div class="col-md-10 mx-auto d-flex">
@@ -74,12 +26,14 @@
         <%= cl_image_tag("Jardinier_pwu8ht",:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
       </div>
       <div class="booking-container">
-        <%= simple_form_for( @booking) do |f| %>
+        <%= simple_form_for(@booking) do |f| %>
         <%= f.association :worker_profile_tag, collection: @worker_profile.tags %>
         <div data-workingdays="<%= @working_hash.to_json %>" id = "working-days"></div>
         <%= f.input :date, as: :string %>
+        <ul id = "availabilities"></ul>
         <%= f.input :from, as: :integer, input_html: {value: ""}%>
         <%= f.input :duration, as: :integer%>
+        <%= f.input :description %>
         <%= f.submit %>
         <% end %>
       </div>
@@ -103,18 +57,6 @@
             <%= review.description %>
           </div>
           <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <div class="availabilities-container">
-        <div>
-          <h2>Availabilities:</h2>
-          <div>
-          <%= link_to "Go back",   worker_profiles_path, class: "btn btn-success"%>
-          </div>
         </div>
       </div>
     </div>
