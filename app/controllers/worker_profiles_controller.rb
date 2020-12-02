@@ -3,6 +3,13 @@ class WorkerProfilesController < ApplicationController
 
   def index
     @worker_profiles = WorkerProfile.all
+
+    @markers = @worker_profiles.geocoded.map do |worker_location|
+      {
+        lat: worker_location.latitude,
+        lng: worker_location.longitude
+      }
+    end
   end
 
   def show
@@ -59,6 +66,6 @@ class WorkerProfilesController < ApplicationController
   end
 
   def worker_params
-    params.require(:worker_profile).permit(:bio, :photo)
+    params.require(:worker_profile).permit(:bio, :photo, :address)
   end
 end
