@@ -12,6 +12,8 @@ Tag.create!(name: "Landscaping")
 Tag.create!(name: "Driving")
 Tag.create!(name: "Housekeeping")
 Tag.create!(name: "Cooking")
+Tag.create!(name: "Babysitting")
+
 puts "start seeding"
 50.times do
   user = User.create(first_name: Faker::Name.first_name,

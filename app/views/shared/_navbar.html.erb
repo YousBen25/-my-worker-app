@@ -27,7 +27,11 @@
         <% end %>
       </li>
       <li class="nav-item dropdown">
-        <img class="avatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://memegenerator.net/img/images/12077751.jpg" />
+        <% if current_user&.photo&.attached? %>
+          <img class="avatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="<%= cl_image_path  current_user.photo.key%>" />
+        <% else %>
+          <img class="avatar" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" src="https://memegenerator.net/img/images/12077751.jpg" />
+        <% end %>
         <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
           <% if user_signed_in? %>
             <%= link_to "Dashboard", dashboard_path, class: "dropdown-item" %>
