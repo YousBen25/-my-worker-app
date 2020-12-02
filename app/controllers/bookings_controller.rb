@@ -43,6 +43,13 @@ class BookingsController < ApplicationController
   def destroy
   end
 
+  def confirm
+    @booking = Booking.find(params[:id])
+    @booking.completed!
+    @booking.save
+    redirect_to dashboard_path
+  end
+
   private
 
   def set_booking
