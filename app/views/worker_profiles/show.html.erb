@@ -50,8 +50,8 @@
   <div class="row">
     <div class="col-md-10 mx-auto d-flex">
       <div class="profile-container d-flex">
-        <%= cl_image_tag("Jardinier_pwu8ht",width: 150, height: 150, crop: :thumb, gravity: :face) %>
-        <div>
+
+        <div class="p-4">
           <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
           <div class="tags-container">
             <ul class="d-flex">
@@ -69,8 +69,9 @@
           <%(5-@worker_profile.average_score).times do |i|%>
           <span class="fa fa-star"></span>
           <% end %>
-          <p><%= @worker_profile.bio %></p>
+          <p class="text-align-justify"><%= @worker_profile.bio %></p>
         </div>
+        <%= cl_image_tag("Jardinier_pwu8ht",:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
       </div>
       <div class="booking-container">
         <%= simple_form_for( @booking) do |f| %>
