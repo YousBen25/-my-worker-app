@@ -10,7 +10,13 @@
   <div>
     <ul class = "navbar-nav centrals">
     <li class = "nav-item">
-      <a class="nav-link welcome-text">Welcome, dear <%= current_user.first_name %></a>
+      <a class="nav-link welcome-text">
+        <% if user_signed_in? %>
+          Welcome, dear <%= current_user.first_name %>
+        <% else %>
+          Welcome
+        <% end %>
+      </a>
     </li>
   </div>
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
