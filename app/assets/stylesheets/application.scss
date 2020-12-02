@@ -27,10 +27,19 @@
 }
 
 #content-wrap {
-  padding-bottom: 200px;
+  padding-bottom: 2.5rem;    /* Footer height */
+  
 }
 
-#booking-wrap {
-  display: flex;
-
+#booking-wrapper{
+  display:flex;
 }
+
+#map {
+  height: 300px;
+  position: sticky;
+  top: 150px;
+  border-radius: 5px;
+  align-items: center;
+}
+
