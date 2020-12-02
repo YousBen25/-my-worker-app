@@ -2,9 +2,10 @@ import flatpickr from "flatpickr";
 
 
 
-const injectThings = (time) => {
-  const input = document.querySelector('#available')
-  input.insertAdjacentHTML("afterbegin", `<p>${time}</p>`)
+const injectThings = (availabilities, times) => {
+  const list = availabilities[`${times}`].map((time) =>`<li>Availability: ${time}</li>` )
+  const input = document.querySelector('#availabilities')
+  input.innerHTML = list.join("")
 }
 
 const initFlatpickr = () => {
@@ -24,9 +25,7 @@ const initFlatpickr = () => {
     ],
       onChange: (selectedDates) => {
         const times = selectedDates[0].getDay()
-        availabilities[`${times}`].forEach((time) => {
-          injectThings(time);
-        })
+        injectThings(availabilities, times)
       }
     });
   }
