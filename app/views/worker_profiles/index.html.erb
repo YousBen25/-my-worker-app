@@ -1,14 +1,10 @@
-
-
-
-
 <ul>
   <% @worker_profiles.each do |worker_profile| %>
     <li>
       <div class = "container">
         <div class="card-service">
           <div class="card-service-picture col">
-            <img src="https://static.wikia.nocookie.net/metalgear/images/f/f1/TPPVenomSnakeMB.png" />
+            <%= cl_image_tag("worker_usd45y",width: 150, height: 150, crop: :thumb, gravity: :face) %>
           </div>
           <div class="card-service-infos col-4">
             <h2 class = "card-service-infos-header">
@@ -40,7 +36,7 @@
               <%break%>
               <% end %>
             <% end %>
-            
+
             <!--<div class ="card-service-review review-two">
               <h2>Soerjadi</h2>
               <p class = "review-content">Now my pool is beyond repair. Thanks for nothing, bro</p>

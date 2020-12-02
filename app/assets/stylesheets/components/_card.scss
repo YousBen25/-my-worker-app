@@ -173,7 +173,7 @@ transition: 0.3s;
 
   transform: translate(-9px, -9px);
   box-shadow: 5px 5px black;
-  background-image: url(https://memegenerator.net/img/images/12077751.jpg);
+  background-image: asset-url("profil.jpg");
 
   }
 
@@ -206,7 +206,7 @@ transition: 0.3s;
 
     transform: translate(-2px, -2px);
     box-shadow: 3px 3px gray;
-    background-image: url(https://memegenerator.net/img/images/12077751.jpg);
+    background-image: asset-url("profil.jpg");
 
     }
 

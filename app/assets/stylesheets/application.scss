@@ -17,4 +17,14 @@
 
 .job-types{
   padding-top: 25px;
+  margin-bottom: 56px;
+}
+
+#page-container {
+  position: relative;
+  min-height: 100vh;
+}
+
+#content-wrap {
+  padding-bottom: 2.5rem;    /* Footer height */
 }
