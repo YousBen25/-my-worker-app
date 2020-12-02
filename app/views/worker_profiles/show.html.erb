@@ -78,6 +78,7 @@
         <%= f.association :worker_profile_tag, collection: @worker_profile.tags %>
         <div data-workingdays="<%= @working_hash.to_json %>" id = "working-days"></div>
         <%= f.input :date, as: :string %>
+        <ul id = "availabilities"></ul>
         <%= f.input :from, as: :integer, input_html: {value: ""}%>
         <%= f.input :duration, as: :integer%>
         <%= f.submit %>
@@ -103,18 +104,6 @@
             <%= review.description %>
           </div>
           <% end %>
-        </div>
-      </div>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col-md-10 mx-auto">
-      <div class="availabilities-container">
-        <div>
-          <h2>Availabilities:</h2>
-          <div>
-          <%= link_to "Go back",   worker_profiles_path, class: "btn btn-success"%>
-          </div>
         </div>
       </div>
     </div>
