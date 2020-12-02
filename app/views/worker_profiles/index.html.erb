@@ -1,63 +1,71 @@
-<ul>
-  <% @worker_profiles.each do |worker_profile| %>
-    <li>
-      <div class = "container">
-        <div class="card-service">
-          <div class="card-service-picture col">
-            <%= cl_image_tag("worker_usd45y",width: 150, height: 150, crop: :thumb, gravity: :face) %>
-          </div>
-          <div class="card-service-infos col-4">
-            <h2 class = "card-service-infos-header">
-              <%=link_to worker_profile.user.first_name, worker_profile_path(worker_profile.id)%> |
-              <%worker_profile.average_score.times do |i|%>
-                <span class="fa fa-star checked"></span>
-              <% end %>
-              <%(5-worker_profile.average_score).times do |i|%>
-                <span class="fa fa-star"></span>
-              <% end %>
-            </h2>
-            <br>
-            <p>
-              Skills :
-              <% worker_profile.worker_profile_tags.each_with_index do |worker_profile_tag, idx| %>
-                <strong><%=worker_profile_tag.tag.name%></strong><%if (idx + 1) == worker_profile.worker_profile_tags.length%>.<% else %>,<% end %>
-              <% end %>
-            </p>
-
-            <p class = "card-service-area">Serving Canggu area</p>
-          </div>
-          <div class ="card-service-reviews col-6">
-            <%worker_profile.reviews.each_with_index do |review, idx_rev|%>
-              <div class ="card-service-review review-one">
-                <h2><%=review.user.first_name%></h2>
-                <p class = "review-content"><%=review.description%></p>
+<div class="cards" style="grid-template-columns: 1fr 1fr">
+  <div class="">
+    <ul>
+      <% @worker_profiles.each do |worker_profile| %>
+        <li>
+          <div class = "container">
+            <div class="card-service">
+              <div class="card-service-picture col">
+                <%= cl_image_tag("worker_usd45y",width: 150, height: 150, crop: :thumb, gravity: :face) %>
               </div>
-              <%if idx_rev == 2%>
-              <%break%>
-              <% end %>
-            <% end %>
+              <div class="card-service-infos col-4">
+                <h2 class = "card-service-infos-header">
+                  <%=link_to worker_profile.user.first_name, worker_profile_path(worker_profile.id)%> |
+                  <%worker_profile.average_score.times do |i|%>
+                    <span class="fa fa-star checked"></span>
+                  <% end %>
+                  <%(5-worker_profile.average_score).times do |i|%>
+                    <span class="fa fa-star"></span>
+                  <% end %>
+                </h2>
+                <br>
+                <p>
+                  Skills :
+                  <% worker_profile.worker_profile_tags.each_with_index do |worker_profile_tag, idx| %>
+                    <strong><%=worker_profile_tag.tag.name%></strong><%if (idx + 1) == worker_profile.worker_profile_tags.length%>.<% else %>,<% end %>
+                  <% end %>
+                </p>
 
-            <!--<div class ="card-service-review review-two">
-              <h2>Soerjadi</h2>
-              <p class = "review-content">Now my pool is beyond repair. Thanks for nothing, bro</p>
+                <p class = "card-service-area">Serving Canggu area</p>
+              </div>
+              <div class ="card-service-reviews col-6">
+                <%worker_profile.reviews.each_with_index do |review, idx_rev|%>
+                  <div class ="card-service-review review-one">
+                    <h2><%=review.user.first_name%></h2>
+                    <p class = "review-content"><%=review.description%></p>
+                  </div>
+                  <%if idx_rev == 2%>
+                  <%break%>
+                  <% end %>
+                <% end %>
+
+                <!--<div class ="card-service-review review-two">
+                  <h2>Soerjadi</h2>
+                  <p class = "review-content">Now my pool is beyond repair. Thanks for nothing, bro</p>
+                </div>
+                <div class ="card-service-review review-three">
+                  <h2>Kuze</h2>
+                  <p class = "review-content">Hard working guy, my garden is now Zen-certified</p>
+                </div>
+                -->
+              </div>
             </div>
-            <div class ="card-service-review review-three">
-              <h2>Kuze</h2>
-              <p class = "review-content">Hard working guy, my garden is now Zen-certified</p>
-            </div>
-            -->
           </div>
-        </div>
-      </div>
-      <br>
-    </li>
-  <% end %>
-</ul>
+          <br>
+        </li>
+      <% end %>
+    </ul>
 
+    <%= link_to "go to dashboard",  dashboard_path %>
 
+    <%= link_to "Become a worker",  new_worker_profile_path %>
+  </div>
+  <div id="map"
+     style="width: 100%; height: 600px;"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+  </div>
+</div>
 
-<%= link_to "go to dashboard",  dashboard_path %>
-
-<%= link_to "Become a worker",  new_worker_profile_path %>
 
 
