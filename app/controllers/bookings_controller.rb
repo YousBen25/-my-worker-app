@@ -32,7 +32,14 @@ class BookingsController < ApplicationController
   end
 
   def show
+    @booking_location = []
+    if @booking.latitude && @booking.latitude
+      @booking_location =[ {
+        lat: @booking.latitude,
+        lng: @booking.longitude
+      }]
   end
+end
 
   def edit
     @worker_profile = @booking.worker_profile_tag.worker_profile
@@ -97,7 +104,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:worker_profile_tag_id, :description, :date, :from, :duration, :address, :longitude, :latitude)
+    params.require(:booking).permit(:worker_profile_tag_id, :description, :date, :from, :duration, :address)
   end
 end
 
