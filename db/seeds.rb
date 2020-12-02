@@ -7,14 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
-
 Tag.create!(name: "Plumbing")
 Tag.create!(name: "Landscaping")
 Tag.create!(name: "Driving")
 Tag.create!(name: "Housekeeping")
 Tag.create!(name: "Cooking")
-
-
 puts "start seeding"
 50.times do
   user = User.create(first_name: Faker::Name.first_name,
@@ -22,16 +19,14 @@ puts "start seeding"
     email: Faker::Internet.email,
     password: "password")
   if rand(0..1) == 1
-    worker_profile = WorkerProfile.create!(user: user, bio: "some bio")
+    worker_profile = WorkerProfile.create!(user: user, bio: "some bio", address: '16 Villa Gaudelet, Paris')
     rand(1..3).times do
       WorkerProfileTag.create!(rate: rand(10..50), worker_profile: worker_profile, tag: Tag.all.sample)
     end
   end
   puts "seeding user"
 end
-
 puts "start seeding bookings"
-
 50.times do
   booking = Booking.create!(
     user: User.all.sample,
@@ -40,7 +35,8 @@ puts "start seeding bookings"
     confirmation: [true, false].sample,
     date: Date.today + rand(0..30),
     duration: rand(1..5),
-    price: 100
+    price: 100,
+    address: 'Paris'
     )
   review = Review.create!(
     score: rand(1..5),
@@ -48,17 +44,13 @@ puts "start seeding bookings"
     booking: booking,
     user: booking.user,
     )
-
   puts "seeding bookings and reviews"
 end
-
 def pick_rand_time
   from = rand(8..20)
   to = from + rand(2..3)
   return [from, to].map(&:to_s)
 end
-
-
 WorkerProfile.all.each do |w|
   rand(2..3).times do
     time = pick_rand_time
@@ -70,7 +62,6 @@ WorkerProfile.all.each do |w|
       )
   end
 end
-
 
 
 # create_table "availabilities", force: :cascade do |t|
