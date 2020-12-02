@@ -11,6 +11,9 @@ class Booking < ApplicationRecord
   validates :price, numericality: {greater_than_or_equal_to: 1}
   validates :address, presence: true
 
+  geocoded_by :address
+  after_validation :geocode, if: :will_save_change_to_address?
+  before_save :calculate_price
 
   def completed?
     confirmation
@@ -20,9 +23,9 @@ class Booking < ApplicationRecord
     self.confirmation = true
   end
 
-  geocoded_by :address
-  after_validation :geocode, if: :will_save_change_to_address?
-  before_save :calculate_price
+  def reject!
+    self.confirmation = false
+  end
 
   def calculate_price
     rate = self.worker_profile_tag.rate
