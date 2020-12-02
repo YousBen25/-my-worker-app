@@ -1,27 +1,27 @@
 class BookingsController < ApplicationController
-  before_action :set_booking, only: [:edit, :update, :destroy]
+  before_action :set_booking, only: [:edit, :show, :update, :destroy]
   def new
     @worker_profile_tag = WorkerProfileTag.find()
   end
 
   def create
-    booking_vars = params[:booking]
-    date = booking_vars["date"].split("-")
-    date = date.map(&:to_i)
-    time = booking_vars["from"].to_i
+    # booking_vars = params[:booking]
+    # date = booking_vars["date"].split("-")
+    # date = date.map(&:to_i)
+    # time = booking_vars["from"].to_i
     workertag = WorkerProfileTag.find(booking_vars[:worker_profile_tag_id])
-    rate = workertag.rate
-    price = rate*booking_vars["duration"].to_i
     @worker_profile= workertag.worker_profile
-
-    @booking = Booking.new(
-      description: booking_vars["description"],
-      worker_profile_tag_id: booking_vars["worker_profile_tag_id"],
-      date: DateTime.new(date[0], date[1], date[2], time),
-      duration: booking_vars["duration"],
-      price: price,
-      user: current_user
-      )
+    @booking = Booking.new(custom_booking_params)
+    @booking.user = current_user
+    @booking.worker_profile_tag = workertag
+    # @booking = Booking.new(
+    #   description: booking_vars["description"],
+    #   worker_profile_tag_id: booking_vars["worker_profile_tag_id"],
+    #   date: DateTime.new(date[0], date[1], date[2], time),
+    #   duration: booking_vars["duration"],
+    #   price: price,
+    #   user: current_user
+    #   )
 
     if @booking.save
       redirect_to booking_path(@booking)
@@ -35,15 +35,47 @@ class BookingsController < ApplicationController
   end
 
   def edit
+    @worker_profile = @booking.worker_profile_tag.worker_profile
+    @working_hash = @worker_profile.calculate_availabilities
   end
 
   def update
+    # booking_vars = params[:booking]
+    # date = booking_vars["date"].split("-")
+    # date = date.map(&:to_i)
+    # time = booking_vars["from"].to_i
+      # description: booking_vars["description"],
+      # date: DateTime.new(date[0], date[1], date[2], time),
+      # duration: booking_vars["duration"],
+      # price: price,
+
+    if @booking.update(custom_booking_params)
+      redirect_to booking_path(@booking)
+    else
+      raise
+      render "worker_profiles/show"
+    end
   end
 
   def destroy
+    @booking.destroy
+    redirect_to "/dashboard"
   end
 
   private
+
+  def custom_booking_params
+    booking_vars = params[:booking]
+    date = booking_vars["date"].split("-")
+    date = date.map(&:to_i)
+    time = booking_vars["from"].to_i
+    {
+      description: booking_vars["description"],
+      date: DateTime.new(date[0], date[1], date[2], time),
+      duration: booking_vars["duration"]
+
+    }
+  end
 
   def set_booking
     @booking = Booking.find(params[:id])
