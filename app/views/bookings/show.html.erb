@@ -6,15 +6,16 @@
     <p>User: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
     <p>Booking Description: <%= @booking.description %></p>
     <p>Address: <%= @booking.address %></p>
+    <%= link_to "Edit", edit_booking_path(@booking.id) %>
   </div>
-  <%= link_to "Edit", edit_booking_path(@booking.id) %>
-</div>
 
   <div class = "container ml-8 col-5" id="map"
      style="width: 50%; height: 600px;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
+
+</div>
 
 
 
