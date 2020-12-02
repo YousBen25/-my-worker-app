@@ -22,4 +22,10 @@ class Booking < ApplicationRecord
 
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+  before_save :calculate_price
+
+  def calculate_price
+    rate = self.worker_profile_tag.rate
+    self.price = rate * self.duration
+  end
 end
