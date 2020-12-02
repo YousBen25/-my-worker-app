@@ -1,19 +1,23 @@
-<div class="container mr-7 col-5">
-  <h1>Booking Summary</h1>
-  <div>
-    <h4>Booking Date: <%= @booking.date %></h4>
-    <p>Worker: <%= @booking.worker_profile_tag.worker_profile.user.first_name %> <%= @booking.worker_profile_tag.worker_profile.user.last_name %></p>
-    <p>User: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
-    <p>Booking Description: <%= @booking.description %></p>
+<div class = container id = "booking-wrap">
+
+  <div class="container mr-7 col-5">
+    <h1>Booking Summary</h1>
+    <div>
+      <h4>Booking Date: <%= @booking.date %></h4>
+      <p>Worker: <%= @booking.worker_profile_tag.worker_profile.user.first_name %> <%= @booking.worker_profile_tag.worker_profile.user.last_name %></p>
+      <p>User: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
+      <p>Booking Description: <%= @booking.description %></p>
+    </div>
+    <%= link_to "Edit", edit_booking_path(@booking.id) %>
   </div>
-  <%= link_to "Edit", edit_booking_path(@booking.id) %>
-</div>
 
   <div class = "container ml-8 col-5" id="map"
      style="width: 50%; height: 600px;"
      data-markers="<%= @markers.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
+
+</div>
 
 
 
