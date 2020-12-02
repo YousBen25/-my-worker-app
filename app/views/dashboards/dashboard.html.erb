@@ -4,7 +4,7 @@
     <div class="col-md-9">
       <h1>Your Dashboard</h1>
         <div class = "bookings">
-          <h2>Bookings You have done</h2>
+          <h2>Received Bookings</h2>
           <ul>
             <% @booking_made.each do |booking| %>
                 <li>
@@ -28,7 +28,7 @@
         </div>
         <% if @worker_profile %>
           <div class = "bookings">
-            <h2>Bookings ive received</h2>
+            <h2>Requested Bookings</h2>
             <ul>
               <% @booking_received.each do |booking| %>
                   <li>
