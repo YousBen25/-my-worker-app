@@ -23,7 +23,11 @@
           <% end %>
           <p class="text-align-justify"><%= @worker_profile.bio %></p>
         </div>
+        <% if @worker_profile.photo.attached?%>
+        <%= cl_image_tag(@worker_profile.photo.key,:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
+        <% else %>
         <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
+        <% end %>
       </div>
       <div class="booking-container">
         <%= simple_form_for(@booking) do |f| %>
