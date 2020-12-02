@@ -31,7 +31,14 @@
   
 }
 
-#booking-wrap {
-  display: flex;
+#booking-wrapper{
+  display:flex;
+}
 
+#map {
+  height: 300px;
+  position: sticky;
+  top: 150px;
+  border-radius: 5px;
+  align-items: center;
 }
