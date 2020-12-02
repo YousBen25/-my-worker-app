@@ -47,7 +47,6 @@ class WorkerProfilesController < ApplicationController
     if @worker_profile.save
       redirect_to dashboard_path
     else
-      raise
       render :new
     end
   end
