@@ -56,9 +56,11 @@
           </div>
         <% end %>
       </div>
+      <%if @worker_profile %>
       <div class="col-md-3">
-        <%= link_to "Update profil", edit_worker_profile_path(@worker_profile), class: "btn btn-success mb-2" %>
+        <%= link_to "Update Profile", edit_worker_profile_path(@worker_profile), class: "btn btn-success mb-2" %>
       </div>
+      <%end%>
   </div>
 </div>
 
