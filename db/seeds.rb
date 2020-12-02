@@ -19,7 +19,7 @@ puts "start seeding"
     email: Faker::Internet.email,
     password: "password")
   if rand(0..1) == 1
-    worker_profile = WorkerProfile.create!(user: user, bio: "some bio", address: '16 Villa Gaudelet, Paris')
+    worker_profile = WorkerProfile.create!(user: user, bio: "some bio", address: Faker::Address.community)
     rand(1..3).times do
       WorkerProfileTag.create!(rate: rand(10..50), worker_profile: worker_profile, tag: Tag.all.sample)
     end

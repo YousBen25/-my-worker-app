@@ -21,7 +21,6 @@ class WorkerProfilesController < ApplicationController
   end
 
   def show
-    raise
     @user = current_user
     @booking = Booking.new
     @working_hash = @worker_profile.calculate_availabilities
