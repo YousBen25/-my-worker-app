@@ -5,6 +5,7 @@
     <p>Worker: <%= @booking.worker_profile_tag.worker_profile.user.first_name %> <%= @booking.worker_profile_tag.worker_profile.user.last_name %></p>
     <p>User: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
     <p>Booking Description: <%= @booking.description %></p>
+    <p>Address: <%= @booking.address %></p>
   </div>
   <%= link_to "Edit", edit_booking_path(@booking.id) %>
 </div>
