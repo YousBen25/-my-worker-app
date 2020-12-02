@@ -50,17 +50,28 @@
   <div class="row">
     <div class="col-md-10 mx-auto d-flex">
       <div class="profile-container d-flex">
-        <img src="https://static.wikia.nocookie.net/metalgear/images/f/f1/TPPVenomSnakeMB.png" />
-        <div>
+
+        <div class="p-4">
           <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
+          <div class="tags-container">
+            <ul class="d-flex">
+
+              <% @worker_profile.worker_profile_tags.each do |worker_profile_tag| %>
+              <li>
+                <span><%= worker_profile_tag.tag.name %></span>
+              </li>
+              <% end %>
+            </ul>
+          </div>
           <% @worker_profile.average_score.times do |i|%>
           <span class="fa fa-star checked"></span>
           <% end %>
           <%(5-@worker_profile.average_score).times do |i|%>
           <span class="fa fa-star"></span>
           <% end %>
-          <p><%= @worker_profile.bio %></p>
+          <p class="text-align-justify"><%= @worker_profile.bio %></p>
         </div>
+        <%= cl_image_tag("Jardinier_pwu8ht",:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
       </div>
       <div class="booking-container">
         <%= simple_form_for( @booking) do |f| %>
