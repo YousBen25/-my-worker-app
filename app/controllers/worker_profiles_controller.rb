@@ -35,6 +35,7 @@ class WorkerProfilesController < ApplicationController
 
   def create
     @worker_profile = WorkerProfile.new(worker_params)
+    @worker_profile.user = current_user
     @worker_profile.save
     if @worker_profile.save
       redirect_to dashboard_path

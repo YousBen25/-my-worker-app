@@ -8,12 +8,15 @@ Rails.application.routes.draw do
     resources :availabilities, only: [:create]
   end
 
-  resources :bookings, only: [:show, :edit, :update, :destroy]
-
   get '/dashboard', to: 'dashboards#dashboard', as: 'dashboard'
 
-  resources :bookings, only: [:show] do
+  resources :bookings, only: [:show, :edit, :update, :destroy] do
     resources :reviews, only: [:create]
+    member do
+      patch :confirm
+      patch :reject
+    end
+
   end
   resources :bookings, only: [:new, :create]
   resources :worker_profile_tags, only: [:destroy]

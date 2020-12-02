@@ -11,6 +11,16 @@ class Booking < ApplicationRecord
   validates :price, numericality: {greater_than_or_equal_to: 1}
   validates :address, presence: true
 
+<<<<<<< HEAD
+  def completed?
+    confirmation
+  end
+
+  def completed!
+    self.comfirmation = true
+  end
+=======
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
+>>>>>>> master
 end
