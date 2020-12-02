@@ -28,7 +28,7 @@ import "bootstrap";
 import flatpickr from "flatpickr";
 import { initSelect2 } from '../plugins/select2tagger.js'
 import { initFlatpickr } from '../plugins/initflatpickr.js'
-
+import { initMapbox } from '../plugins/init_mapbox';
 
 
 // Internal imports, e.g:
@@ -40,3 +40,10 @@ document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
 
 });
+
+
+
+
+document.addEventListener('turbolinks:load', () => {
+  initMapbox();
+})
