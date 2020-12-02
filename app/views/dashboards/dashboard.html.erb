@@ -19,9 +19,9 @@
                       <p>Price: <%= booking.price %></p>
                       <div class = "d-flex justify-content-end">
                       <% if booking.confirmation? %>
-                        <button type="button" class="btn btn-primary">Booking Confirmed</button>
+                        <p>This booking is confirmed</p>
                       <% else %>
-                        <button type="button" class="btn btn-warning">Booking Pending</button>
+                        <p>Waiting for the worker's confirmation</p>
                       <% end %>
                       </div>
                     </div>
@@ -35,18 +35,19 @@
             <h2>Received Bookings</h2>
             <ul>
               <% @booking_received.each do |booking| %>
-                <%= link_to booking_path(booking) do %>
                   <li>
                     <div class="card-product">
                       <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
                       <div class="card-product-infos">
+                      <%= link_to booking_path(booking) do %>
                         <h2><%= booking.description %></h2>
+                      <% end %>
                         <p>Your name: <%= booking.user.first_name %></p>
                         <p>Date: <%= booking.date %></p>
                         <p>Price: <%= booking.price %></p>
                         <div class = "d-flex justify-content-end">
                           <% if booking.confirmation? %>
-                            <button type="button" class="btn btn-primary">Booking Confirmed</button>
+                            <p>You confirmed the booking</p>
                           <% else %>
                             <%= link_to "confirm",  confirm_booking_path(booking), method: :patch, class: "btn btn-success" %>
                           <% end %>
@@ -55,7 +56,6 @@
                     </div>
                   </li>
                 <% end %>
-              <% end %>
               </ul>
           </div>
         <% end %>
