@@ -50,7 +50,7 @@ class BookingsController < ApplicationController
   end
 
   def booking_params
-    params.require(:booking).permit(:worker_profile_tag_id, :description, :date,:from, :duration)
+    params.require(:booking).permit(:worker_profile_tag_id, :description, :date, :from, :duration, :address, :longitude, :latitude)
   end
 end
 

@@ -65,6 +65,6 @@ class WorkerProfilesController < ApplicationController
   end
 
   def worker_params
-    params.require(:worker_profile).permit(:bio, :photo, :address)
+    params.require(:worker_profile).permit(:bio, :photo, :address, :longitude, :latitude)
   end
 end
