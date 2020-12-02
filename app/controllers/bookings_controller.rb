@@ -26,7 +26,6 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking)
     else
-      raise
       render "worker_profiles/show"
     end
   end
@@ -59,7 +58,6 @@ end
     if @booking.update(custom_booking_params)
       redirect_to booking_path(@booking)
     else
-      raise
       render "worker_profiles/show"
     end
   end
