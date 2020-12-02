@@ -143,18 +143,21 @@ justify-content: center;
 
 
 .card-profile {
-position: relative;
- width: 300px;
- height: 400px;
+ width: 330px;
+ height: 330px;
  border-radius: 5px;
  background-size: cover;
  background-position: center;
  transition: 0.3s;
+ margin: 0 auto;
+ display: flex;
+ flex-wrap: wrap;
+ align-content: center;
+ justify-content: center;
 }
 
 
 .card-title {
-  position: absolute;
   bottom: 5px;
   font-weight: bold;
   color: white;
@@ -163,10 +166,10 @@ position: relative;
   }
 
 .card-subtitle {
-position: absolute;
 bottom: 5px;
 color: rgba(0, 0, 0, 0.0);
 transition: 0.3s;
+text-align: center;
 }
 
 .card-profile:hover {
@@ -174,7 +177,6 @@ transition: 0.3s;
   transform: translate(-9px, -9px);
   box-shadow: 5px 5px black;
   background-image: asset-url("profil.jpg");
-
   }
 
 
