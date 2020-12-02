@@ -7,6 +7,7 @@
           <h2>Received Bookings</h2>
           <ul>
             <% @booking_made.each do |booking| %>
+              <%= link_to booking_path(booking) do %>
                 <li>
                   <div class="card-product">
                     <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
@@ -23,6 +24,7 @@
                     </div>
                   </div>
                 </li>
+              <% end %>
             <% end %>
             </ul>
         </div>
@@ -31,6 +33,7 @@
             <h2>Requested Bookings</h2>
             <ul>
               <% @booking_received.each do |booking| %>
+                <%= link_to booking_path(booking) do %>
                   <li>
                     <div class="card-product">
                       <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
@@ -47,6 +50,7 @@
                       </div>
                     </div>
                   </li>
+                <% end %>
               <% end %>
               </ul>
           </div>
