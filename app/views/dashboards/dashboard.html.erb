@@ -15,6 +15,11 @@
                       <p>Your name: <%= booking.user.first_name %></p>
                       <p>Date: <%= booking.date %></p>
                       <p>Price: <%= booking.price %></p>
+                      <% if booking.confirmation? %>
+                        <p>Booking confirmed</p>
+                      <% else %>
+                        <p>Booking pending</p>
+                      <% end %>
                     </div>
                   </div>
                 </li>
@@ -34,22 +39,21 @@
                         <p>Your name: <%= booking.user.first_name %></p>
                         <p>Date: <%= booking.date %></p>
                         <p>Price: <%= booking.price %></p>
+                        <% if booking.confirmation? %>
+                          <p>This booking is confirmed</p>
+                        <% else %>
+                          <%= link_to "confirm",  confirm_booking_path(booking), method: :patch, class: "btn btn-success" %>
+                        <% end %>
                       </div>
                     </div>
                   </li>
-                  <% if booking.confirmation? %>
-                    <%= link_to "confirm",  confirm_booking_path(booking) %>
-                  <% else %>
-                    <%= link_to "reject", reject_booking_path(booking)%>
-                  <% end %>
               <% end %>
               </ul>
           </div>
         <% end %>
       </div>
       <div class="col-md-3">
-        <%= link_to "Update my profile", edit_worker_profile_path(@worker_profile)  %>
-
+        <%= link_to "Update profil", edit_worker_profile_path(@worker_profile), class: "btn btn-success mb-2" %>
       </div>
   </div>
 </div>
