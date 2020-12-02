@@ -4,33 +4,35 @@
     <div class="col-md-9">
       <h1>Your Dashboard</h1>
         <div class = "bookings">
-          <h2>Received Bookings</h2>
+          <h2>Requested Bookings</h2>
           <ul>
             <% @booking_made.each do |booking| %>
-              <%= link_to booking_path(booking) do %>
                 <li>
-                  <div class="card-product">
+                  <div class="card-product ">
                     <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
-                    <div class="card-product-infos">
-                      <h2><%= booking.description %></h2>
+                    <div class="card-product-infos w-100", style = "position:relative">
+                      <%= link_to booking_path(booking) do %>
+                        <h2><%= booking.description %></h2>
+                      <% end %>
                       <p>Your name: <%= booking.user.first_name %></p>
                       <p>Date: <%= booking.date %></p>
                       <p>Price: <%= booking.price %></p>
+                      <div class = "d-flex justify-content-end">
                       <% if booking.confirmation? %>
-                        <p>Booking confirmed</p>
+                        <button type="button" class="btn btn-primary">Booking Confirmed</button>
                       <% else %>
-                        <p>Booking pending</p>
+                        <button type="button" class="btn btn-warning">Booking Pending</button>
                       <% end %>
+                      </div>
                     </div>
                   </div>
                 </li>
-              <% end %>
             <% end %>
             </ul>
         </div>
         <% if @worker_profile %>
           <div class = "bookings">
-            <h2>Requested Bookings</h2>
+            <h2>Received Bookings</h2>
             <ul>
               <% @booking_received.each do |booking| %>
                 <%= link_to booking_path(booking) do %>
@@ -42,11 +44,13 @@
                         <p>Your name: <%= booking.user.first_name %></p>
                         <p>Date: <%= booking.date %></p>
                         <p>Price: <%= booking.price %></p>
-                        <% if booking.confirmation? %>
-                          <p>This booking is confirmed</p>
-                        <% else %>
-                          <%= link_to "confirm",  confirm_booking_path(booking), method: :patch, class: "btn btn-success" %>
-                        <% end %>
+                        <div class = "d-flex justify-content-end">
+                          <% if booking.confirmation? %>
+                            <button type="button" class="btn btn-primary">Booking Confirmed</button>
+                          <% else %>
+                            <%= link_to "confirm",  confirm_booking_path(booking), method: :patch, class: "btn btn-success" %>
+                          <% end %>
+                        </div>
                       </div>
                     </div>
                   </li>
