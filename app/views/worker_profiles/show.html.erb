@@ -53,6 +53,16 @@
         <%= cl_image_tag("Jardinier_pwu8ht",width: 150, height: 150, crop: :thumb, gravity: :face) %>
         <div>
           <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
+          <div class="tags-container">
+            <ul class="d-flex">
+
+              <% @worker_profile.worker_profile_tags.each do |worker_profile_tag| %>
+              <li>
+                <span><%= worker_profile_tag.tag.name %></span>
+              </li>
+              <% end %>
+            </ul>
+          </div>
           <% @worker_profile.average_score.times do |i|%>
           <span class="fa fa-star checked"></span>
           <% end %>
