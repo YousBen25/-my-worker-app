@@ -13,6 +13,23 @@ class WorkerProfile < ApplicationRecord
   geocoded_by :address
   after_validation :geocode, if: :will_save_change_to_address?
 
+  include PgSearch::Model
+  pg_search_scope :search_by_address,
+  against: [ :address ],
+  using: {
+    tsearch: { prefix: true }
+  }
+
+  pg_search_scope :search_by_job,
+  against: [],
+  associated_against: {
+    tags: [:name]
+  },
+
+  using: {
+    tsearch: {prefix: true}
+  }
+
   def average_score
     return 0 if reviews.count.zero?
 
@@ -23,13 +40,13 @@ class WorkerProfile < ApplicationRecord
     working_hash = {}
     self.availabilities.each do |availability|
       if working_hash[availability.day.to_s]
-         working_hash[availability.day.to_s] << "#{availability.from.hour}-#{availability.to.hour}"
-      else
-         working_hash[availability.day.to_s] = ["#{availability.from.hour}-#{availability.to.hour}"]
-      end
-    end
-    working_hash
-  end
+       working_hash[availability.day.to_s] << "#{availability.from.hour}-#{availability.to.hour}"
+     else
+       working_hash[availability.day.to_s] = ["#{availability.from.hour}-#{availability.to.hour}"]
+     end
+   end
+   working_hash
+ end
 end
 
 # create_table "worker_profiles", force: :cascade do |t|
