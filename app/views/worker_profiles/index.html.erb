@@ -8,8 +8,8 @@
           <div class = "container">
             <div class="card-service">
               <div class="card-service-picture col">
-                <% if worker_profile.photo.attached?%>
-                <%= cl_image_tag(worker_profile.photo.key,:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
+                <% if worker_profile.user.photo.attached?%>
+                <%= cl_image_tag(worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
                 <% else %>
                 <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
                 <% end %>
@@ -61,9 +61,7 @@
       </li>
       <% end %>
     </ul>
-
   </div>
-
 </div>
 
 

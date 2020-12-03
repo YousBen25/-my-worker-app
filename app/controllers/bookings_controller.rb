@@ -9,11 +9,13 @@ class BookingsController < ApplicationController
     # date = booking_vars["date"].split("-")
     # date = date.map(&:to_i)
     # time = booking_vars["from"].to_i
-    workertag = WorkerProfileTag.find(params[:booking][:worker_profile_tag_id])
-    @worker_profile= workertag.worker_profile
-    @booking = Booking.new(custom_booking_params)
+    # workertag = WorkerProfileTag.find(params[:booking][:worker_profile_tag_id]) if params[:booking][:worker_profile_tag_id.present?
+    
+    @worker_profile= WorkerProfile.find(params[:worker_profile_id])
+    @booking = Booking.new(booking_params)
+    @booking.date = generate_date
     @booking.user = current_user
-    @booking.worker_profile_tag = workertag
+    
     # @booking = Booking.new(
     #   description: booking_vars["description"],
     #   worker_profile_tag_id: booking_vars["worker_profile_tag_id"],
@@ -39,7 +41,7 @@ class BookingsController < ApplicationController
       @booking.update(checkout_session_id: session.id)
       redirect_to new_booking_payment_path(@booking)
     else
-      raise
+      @working_hash = @worker_profile.calculate_availabilities
       render "worker_profiles/show"
     end
   end
@@ -68,8 +70,8 @@ end
       # date: DateTime.new(date[0], date[1], date[2], time),
       # duration: booking_vars["duration"],
       # price: price,
-
-    if @booking.update(custom_booking_params)
+    @booking.date = generate_date 
+    if @booking.update(booking_params)
       redirect_to booking_path(@booking)
     else
       render "worker_profiles/show"
@@ -97,6 +99,7 @@ end
 
   private
 
+
   def custom_booking_params
     booking_vars = params[:booking]
     date = booking_vars["date"].split("-")
@@ -109,6 +112,14 @@ end
       address: booking_vars["address"],
       state: "pending"
     }
+
+  def generate_date
+    return nil if params[:booking]["date"].blank? ||  params[:booking]["from"].blank?
+
+    date = params[:booking]["date"].split("-")
+    date = date.map(&:to_i)
+    time = params[:booking]["from"].to_i
+    DateTime.new(date[0], date[1], date[2], time)
   end
 
   def set_booking
@@ -116,7 +127,7 @@ end
   end
 
   def booking_params
-    params.require(:booking).permit(:worker_profile_tag_id, :description, :date, :from, :duration, :address)
+    params.require(:booking).permit(:worker_profile_tag_id, :description, :duration, :address)
   end
 end
 

@@ -4,8 +4,8 @@
 @import "config/bootstrap_variables";
 
 // External libraries
-@import 'flatpickr/dist/flatpickr.css';
-@import 'select2/dist/css/select2.css';
+@import 'flatpickr/dist/flatpickr';
+@import 'select2/dist/css/select2';
 @import "bootstrap/scss/bootstrap";
 @import "font-awesome-sprockets";
 @import "font-awesome";
@@ -27,7 +27,7 @@
 }
 
 #content-wrap {
-  padding-bottom: 2.5rem;    /* Footer height */
+  padding-bottom: 10rem;    /* Footer height */
 
 }
 
@@ -43,3 +43,25 @@
   align-items: center;
 }
 
+.algolia-places {
+  width: 30%;
+}
+
+.ap-name {
+  color: blue;
+}
+
+#booking-address-home{
+  height: 27px;
+}
+#worker_profile_address {
+  width: 100%;
+}
+
+.row {
+  justify-content: center;
+}
+
+.centered {
+  text-align: center;
+}
