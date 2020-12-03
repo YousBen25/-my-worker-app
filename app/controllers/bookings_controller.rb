@@ -12,7 +12,7 @@ class BookingsController < ApplicationController
     # time = booking_vars["from"].to_i
     # workertag = WorkerProfileTag.find(params[:booking][:worker_profile_tag_id]) if params[:booking][:worker_profile_tag_id.present?
 
-    @worker_profile= WorkerProfile.find(params[:worker_profile_id])
+    @worker_profile = WorkerProfile.find(params[:worker_profile_id])
     @booking = Booking.new(custom_booking_params)
     @booking.date = generate_date
     @booking.user = current_user
@@ -74,6 +74,7 @@ class BookingsController < ApplicationController
       # duration: booking_vars["duration"],
       # price: price,
     @booking.date = generate_date
+    authorize @booking
     if @booking.update(booking_params)
       redirect_to booking_path(@booking)
     else
