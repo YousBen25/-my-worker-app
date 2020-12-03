@@ -15,6 +15,7 @@
           </form>
          </div>
         <% @worker_profiles.each do |worker_profile| %>
+
         <li>
           <div class = "container">
             <div class="card-service">
@@ -43,7 +44,7 @@
                   <% end %>
                 </p>
 
-                <p class = "card-service-area">Serving Canggu area</p>
+                <p class = "card-service-area"><%= worker_profile.address %></p>
               </div>
               <div class ="card-service-reviews col-6">
                 <%worker_profile.reviews.each_with_index do |review, idx_rev|%>
@@ -56,15 +57,15 @@
                 <% end %>
                 <% end %>
 
-                <!--<div class ="card-service-review review-two">
+                <!-- <div class ="card-service-review review-two">
                   <h2>Soerjadi</h2>
                   <p class = "review-content">Now my pool is beyond repair. Thanks for nothing, bro</p>
                 </div>
                 <div class ="card-service-review review-three">
                   <h2>Kuze</h2>
                   <p class = "review-content">Hard working guy, my garden is now Zen-certified</p>
-                </div>
-              -->
+                </div> -->
+
             </div>
           </div>
         </div>

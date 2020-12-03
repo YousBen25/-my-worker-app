@@ -9,7 +9,11 @@
             <% @booking_made.each do |booking| %>
               <li>
                 <div class="card-product ">
-                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                  <% if booking.worker_profile_tag.worker_profile.user.photo.attached?%>
+                    <%= cl_image_tag(@booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
+                  <% else %>
+                    <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face") %>
+                  <% end %>
                   <div class="card-product-infos w-100", style = "position:relative">
                     <%= link_to booking_path(booking) do %>
                       <h2><%= booking.description %></h2>
