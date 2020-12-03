@@ -2,10 +2,16 @@
   justify-content: space-between;
   background: #6eb9e7;
   width: 100vw;
+  background-color: transparent;
+  transition: 0.3s background-color ease;
 }
 
 .navbar-lewagon .navbar-collapse {
   flex-grow: 0;
+}
+
+.navbar-lewagon-assistme {
+  background-image: url('https://res.cloudinary.com/djevcywps/image/upload/v1606864546/driver_cdgjui.jpg');
 }
 
 .navbar-lewagon .navbar-brand img {
@@ -20,6 +26,6 @@
 
 
 .welcome-text {
-  color: darkblue;
+  color: beige !important;
   font-weight: 900;
 }
