@@ -91,13 +91,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.completed!
     @booking.save
-    redirect_to dashboard_path
-  end
-
-  def reject
-    @booking = Booking.find(params[:id])
-    @booking.completed!
-    @booking.save
+    authorize @booking
     redirect_to dashboard_path
   end
 
