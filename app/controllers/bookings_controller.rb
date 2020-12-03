@@ -11,11 +11,11 @@ class BookingsController < ApplicationController
     # date = date.map(&:to_i)
     # time = booking_vars["from"].to_i
     # workertag = WorkerProfileTag.find(params[:booking][:worker_profile_tag_id]) if params[:booking][:worker_profile_tag_id.present?
-
     @worker_profile = WorkerProfile.find(params[:worker_profile_id])
     @booking = Booking.new(custom_booking_params)
     @booking.date = generate_date
     @booking.user = current_user
+
     authorize @booking
     # @booking = Booking.new(
     #   description: booking_vars["description"],
@@ -25,7 +25,6 @@ class BookingsController < ApplicationController
     #   price: price,
     #   user: current_user
     #   )
-
     if @booking.save
       session = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],
