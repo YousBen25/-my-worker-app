@@ -28,6 +28,7 @@ class BookingsController < ApplicationController
     if @booking.save
       redirect_to booking_path(@booking)
     else
+      @working_hash = @worker_profile.calculate_availabilities
       render "worker_profiles/show"
     end
   end
