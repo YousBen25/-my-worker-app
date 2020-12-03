@@ -2,7 +2,6 @@ class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :show, :update, :destroy]
   def new
     authorize @booking
-    raise
     @worker_profile_tag = WorkerProfileTag.find()
   end
 

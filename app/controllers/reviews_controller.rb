@@ -4,6 +4,7 @@ class ReviewsController < ApplicationController
   @worker_profile = WorkerProfile.find(params[:worker_profile_id])
   @review.worker_profile = @worker_profile
   @review.save
+  authorize(current_user, policy_class: ReviewPolicy)
   if @review.save
     redirect_to worker_profile_path(@worker_profile)
   else
