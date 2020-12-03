@@ -2,7 +2,7 @@
 <div class="container" id= "booking-wrapper">
 
   <div class = "ml-8 col-5">
-    <h1>Booking Summary</h1>
+    <h1>Booking #<%= @booking.id %> <small><span class="badge badge-primary"><%= @booking.state %></span></small></h1>
     <h4>Booking Date: <%= @booking.date %></h4>
     <p>Worker: <%= @booking.worker_profile_tag.worker_profile.user.first_name %> <%= @booking.worker_profile_tag.worker_profile.user.last_name %></p>
     <p>User: <%= @booking.user.first_name %> <%= @booking.user.last_name %></p>
@@ -15,7 +15,7 @@
      data-markers="<%= @booking_location.to_json %>"
      data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
   </div>
-  
+
 </div>
 
 
