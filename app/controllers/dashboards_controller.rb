@@ -1,5 +1,6 @@
 class DashboardsController < ApplicationController
   def dashboard
+    authorize(current_user, policy_class: DashboardPolicy)
     @user = current_user
     @worker_profile = current_user.worker_profile
     @booking_made = Booking.where(user: current_user)

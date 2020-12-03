@@ -1,6 +1,8 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :show, :update, :destroy]
   def new
+    authorize @booking
+    raise
     @worker_profile_tag = WorkerProfileTag.find()
   end
 
@@ -14,6 +16,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(custom_booking_params)
     @booking.user = current_user
     @booking.worker_profile_tag = workertag
+    authorize @booking
     # @booking = Booking.new(
     #   description: booking_vars["description"],
     #   worker_profile_tag_id: booking_vars["worker_profile_tag_id"],
@@ -31,6 +34,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    authorize @booking
     @booking_location = []
     if @booking.latitude && @booking.longitude
       @booking_location =[ {
