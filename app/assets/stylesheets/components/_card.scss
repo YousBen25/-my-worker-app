@@ -150,6 +150,9 @@ position: relative;
  background-size: cover;
  background-position: center;
  transition: 0.3s;
+ display: flex;
+ justify-content: center;
+ margin-bottom: 30px;
 }
 
 
@@ -167,6 +170,8 @@ position: absolute;
 bottom: 5px;
 color: rgba(0, 0, 0, 0.0);
 transition: 0.3s;
+text-align: center;
+padding: 25px 5px;
 }
 
 .card-profile:hover {
