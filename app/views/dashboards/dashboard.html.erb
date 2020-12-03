@@ -8,6 +8,7 @@
           <ul>
             <% @booking_made.each do |booking| %>
               <li>
+
                 <div class="card-product mb-2 rounded">
                   <% if booking.worker_profile_tag.worker_profile.user.photo.attached? %>
                     <%= cl_image_tag(booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>

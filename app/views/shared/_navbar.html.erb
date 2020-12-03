@@ -12,7 +12,7 @@
     <li class = "nav-item">
       <a class="nav-link welcome-text">
         <% if user_signed_in? %>
-          Welcome, dear <%= current_user.first_name %>
+          Welcome, <%= current_user.first_name %> <%= current_user.last_name %>
         <% else %>
           Welcome
         <% end %>

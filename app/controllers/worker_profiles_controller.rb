@@ -5,6 +5,7 @@ class WorkerProfilesController < ApplicationController
 
   DISTANCE = 2000
   def index
+    @tags = Tag.all
     if params[:address].present? && params[:job_type].present?
       # @worker_profiles = WorkerProfile.search_by_address(params[:address]).search_by_job(params[:job_type])
       @worker_profiles = WorkerProfile.near(params[:address], DISTANCE).search_by_job(params[:job_type])
