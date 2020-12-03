@@ -24,8 +24,22 @@ class BookingsController < ApplicationController
     #   )
 
     if @booking.save
-      redirect_to booking_path(@booking)
+      session = Stripe::Checkout::Session.create(
+          payment_method_types: ['card'],
+          line_items: [{
+            name: @worker_profile.user.first_name,
+            amount: @booking.price * 100,
+            currency: 'usd',
+            quantity: 1
+          }],
+          success_url: booking_url(@booking),
+          cancel_url: booking_url(@booking)
+        )
+
+      @booking.update(checkout_session_id: session.id)
+      redirect_to new_booking_payment_path(@booking)
     else
+      raise
       render "worker_profiles/show"
     end
   end
@@ -93,7 +107,7 @@ end
       date: DateTime.new(date[0], date[1], date[2], time),
       duration: booking_vars["duration"],
       address: booking_vars["address"],
-
+      state: "pending"
     }
   end
 
