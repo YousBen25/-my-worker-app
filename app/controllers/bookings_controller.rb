@@ -49,6 +49,7 @@ class BookingsController < ApplicationController
 
   def show
     authorize @booking
+    @review = Review.new
     @booking_location = []
     if @booking.latitude && @booking.longitude
       @booking_location =[ {
