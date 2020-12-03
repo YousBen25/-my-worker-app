@@ -13,7 +13,7 @@ class BookingsController < ApplicationController
     # workertag = WorkerProfileTag.find(params[:booking][:worker_profile_tag_id]) if params[:booking][:worker_profile_tag_id.present?
 
     @worker_profile= WorkerProfile.find(params[:worker_profile_id])
-    @booking = Booking.new(booking_params)
+    @booking = Booking.new(custom_booking_params)
     @booking.date = generate_date
     @booking.user = current_user
     authorize @booking
@@ -55,8 +55,8 @@ class BookingsController < ApplicationController
         lat: @booking.latitude,
         lng: @booking.longitude
       }]
+    end
   end
-end
 
   def edit
     @worker_profile = @booking.worker_profile_tag.worker_profile
@@ -113,6 +113,7 @@ end
       date: DateTime.new(date[0], date[1], date[2], time),
       duration: booking_vars["duration"],
       address: booking_vars["address"],
+      worker_profile_tag_id: booking_vars["worker_profile_tag_id"],
       state: "pending"
     }
   end
@@ -132,6 +133,6 @@ end
   def booking_params
     params.require(:booking).permit(:worker_profile_tag_id, :description, :duration, :address)
   end
-end
 
 end
+
