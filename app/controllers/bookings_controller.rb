@@ -1,6 +1,7 @@
 class BookingsController < ApplicationController
   before_action :set_booking, only: [:edit, :show, :update, :destroy]
   def new
+    authorize @booking
     @worker_profile_tag = WorkerProfileTag.find()
   end
 
@@ -15,7 +16,7 @@ class BookingsController < ApplicationController
     @booking = Booking.new(custom_booking_params)
     @booking.date = generate_date
     @booking.user = current_user
-
+    authorize @booking
     # @booking = Booking.new(
     #   description: booking_vars["description"],
     #   worker_profile_tag_id: booking_vars["worker_profile_tag_id"],
@@ -47,6 +48,7 @@ class BookingsController < ApplicationController
   end
 
   def show
+    authorize @booking
     @booking_location = []
     if @booking.latitude && @booking.longitude
       @booking_location =[ {
@@ -59,6 +61,7 @@ class BookingsController < ApplicationController
   def edit
     @worker_profile = @booking.worker_profile_tag.worker_profile
     @working_hash = @worker_profile.calculate_availabilities
+    authorize @booking
   end
 
   def update
@@ -117,7 +120,6 @@ class BookingsController < ApplicationController
 
   def generate_date
     return nil if params[:booking]["date"].blank? ||  params[:booking]["from"].blank?
-
     date = params[:booking]["date"].split("-")
     date = date.map(&:to_i)
     time = params[:booking]["from"].to_i

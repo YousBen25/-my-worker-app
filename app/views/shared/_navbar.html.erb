@@ -22,8 +22,8 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <% if user_signed_in? && !current_user.worker_profile %>
-        <%= link_to "Become a worker!", new_worker_profile_path, class: "nav-link" %>
+        <% if policy(WorkerProfile).create? %>
+          <%= link_to "Become a worker!", new_worker_profile_path, class: "nav-link" %>
         <% end %>
       </li>
       <li class="nav-item dropdown">

@@ -19,11 +19,11 @@ const initFlatpickr = () => {
       dateFormat: "Y-m-d",
       enable: [
         function(date) {
-            // return true to disable
             return workingdays.includes(date.getDay());
         }
     ],
       onChange: (selectedDates) => {
+        console.log(selectedDates[0].getDay())
         const times = selectedDates[0].getDay()
         injectThings(availabilities, times)
       }
