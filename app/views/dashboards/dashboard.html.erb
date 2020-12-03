@@ -4,12 +4,16 @@
     <div class="col-md-9">
       <h1>Your Dashboard</h1>
         <div class = "bookings">
-          <h2>Requested Bookings</h2>
+          <h3>Requested Bookings</h3>
           <ul>
             <% @booking_made.each do |booking| %>
               <li>
-                <div class="card-product ">
-                  <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                <div class="card-product mb-2 rounded">
+                  <% if @worker_profile.user.photo.attached?%>
+                    <%= cl_image_tag(booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
+                  <% else %>
+                    <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
+                  <% end %>
                   <div class="card-product-infos w-100", style = "position:relative">
                     <%= link_to booking_path(booking) do %>
                       <h2><%= booking.description %></h2>
@@ -32,12 +36,16 @@
         </div>
         <% if @worker_profile %>
           <div class = "bookings">
-            <h2>Received Bookings</h2>
+            <h3>Received Bookings</h3>
             <ul>
               <% @booking_received.each do |booking| %>
                   <li>
-                    <div class="card-product mb-2">
-                      <img src="https://raw.githubusercontent.com/lewagon/fullstack-images/master/uikit/skateboard.jpg" />
+                    <div class="card-product mb-2 rounded">
+                      <% if @worker_profile.user.photo.attached?%>
+                        <%= cl_image_tag(booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
+                      <% else %>
+                        <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
+                      <% end %>
                       <div class="card-product-infos">
                       <%= link_to booking_path(booking) do %>
                         <h2><%= booking.description %></h2>
