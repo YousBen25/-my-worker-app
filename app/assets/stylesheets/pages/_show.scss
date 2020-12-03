@@ -1,10 +1,12 @@
 .profile-container {
   flex-grow: 1;
   margin-top: 8px;
-  border: 1px solid lightblue;
-  padding: 8px;
+  padding: 30px;
   border-radius: 4px;
-  box-shadow: 1px 5px 15px 3px #919191;
+  box-shadow: 0px 1px 5px 3px lightgray;
+  img{
+    border-radius: 50%
+  }
   & .tags-container {
     ul {
       margin-left: -35px;
@@ -24,19 +26,19 @@
 
 .booking-container {
   margin-top: 8px;
-  border: 1px solid lightblue;
-  padding: 8px;
+  //border: 1px solid lightblue;
+  padding: 20px;
   border-radius: 4px;
-  box-shadow: 1px 5px 15px 3px #919191;
+  box-shadow: 0px 1px 5px 3px lightgray;
   margin-left: 8px;
 }
 
 .review-container {
   margin-top: 8px;
-  border: 1px solid lightblue;
+  //border: 1px solid lightblue;
   padding: 8px;
   border-radius: 4px;
-  box-shadow: 1px 5px 15px 3px #919191;
+  box-shadow: 1px 1px 3px 3px lightgray;
 }
 
 .availabilities-container {
@@ -44,6 +46,6 @@
   border: 1px solid lightblue;
   padding: 8px;
   border-radius: 4px;
-  box-shadow: 1px 5px 15px 3px #919191;
+  box-shadow: 0px 5px 15px 3px #919191;
   margin-bottom: 8px;
 }
