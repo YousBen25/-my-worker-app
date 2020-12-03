@@ -32,7 +32,7 @@ class BookingsController < ApplicationController
 
   def show
     @booking_location = []
-    if @booking.latitude && @booking.latitude
+    if @booking.latitude && @booking.longitude
       @booking_location =[ {
         lat: @booking.latitude,
         lng: @booking.longitude
