@@ -12,6 +12,7 @@ class AvailabilitiesController < ApplicationController
     @availability = Availability.find(params[:id])
     @availability.destroy
     redirect_to edit_worker_profile_path(@availability.worker_profile)
+    authorize @availability
   end
 
   def availability_params
