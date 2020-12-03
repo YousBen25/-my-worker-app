@@ -11,11 +11,11 @@ class BookingsController < ApplicationController
     # date = date.map(&:to_i)
     # time = booking_vars["from"].to_i
     # workertag = WorkerProfileTag.find(params[:booking][:worker_profile_tag_id]) if params[:booking][:worker_profile_tag_id.present?
-
     @worker_profile = WorkerProfile.find(params[:worker_profile_id])
     @booking = Booking.new(custom_booking_params)
     @booking.date = generate_date
     @booking.user = current_user
+
     authorize @booking
     # @booking = Booking.new(
     #   description: booking_vars["description"],
@@ -25,7 +25,6 @@ class BookingsController < ApplicationController
     #   price: price,
     #   user: current_user
     #   )
-
     if @booking.save
       session = Stripe::Checkout::Session.create(
           payment_method_types: ['card'],
@@ -49,6 +48,7 @@ class BookingsController < ApplicationController
 
   def show
     authorize @booking
+    @review = Review.new
     @booking_location = []
     if @booking.latitude && @booking.longitude
       @booking_location =[ {
@@ -91,13 +91,7 @@ class BookingsController < ApplicationController
     @booking = Booking.find(params[:id])
     @booking.completed!
     @booking.save
-    redirect_to dashboard_path
-  end
-
-  def reject
-    @booking = Booking.find(params[:id])
-    @booking.completed!
-    @booking.save
+    authorize @booking
     redirect_to dashboard_path
   end
 

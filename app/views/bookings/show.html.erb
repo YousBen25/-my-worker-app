@@ -1,5 +1,5 @@
 
-<div class="container" id= "booking-wrapper">
+<div class="container mb-5" id= "booking-wrapper">
 
   <div class = "ml-8 col-5">
     <h1>Booking #<%= @booking.id %> <small><span class="badge badge-primary"><%= @booking.state %></span></small></h1>
@@ -10,7 +10,9 @@
     <p>Address: <%= @booking.address %></p>
     <p>Price: <%= @booking.price %></p>
     <p>Duration: <%= @booking.duration %></p>
-    <%= link_to "Edit", edit_booking_path(@booking.id) %>
+    <% if policy(@booking).edit? %>
+      <%= link_to "Edit", edit_booking_path(@booking.id) %>
+    <% end %>
   </div>
 
   <div class = "ml-8 col-6" id = "map"
@@ -20,8 +22,35 @@
 
 </div>
 
-
-
+<% if @booking.date >= @booking.date + 1.day %>
+  <div class="container mt-5">
+    <div class="row">
+      <% if @booking.review%>
+        <div class="col-6 mx-auto">
+          <h1>Your review:</h1>
+            <div>
+            <%@booking.review.score.times do |i|%>
+            <span class="fa fa-star checked"></span>
+            <% end %>
+            <%(5-@booking.review.score).times do |i|%>
+            <span class="fa fa-star"></span>
+            <% end %>
+            <%= @booking.review.description %>
+          </div>
+        </div>
+      <% else %>
+        <div class="col-6 mx-auto">
+          <h1>Leave a review:</h1>
+            <%= simple_form_for([@booking, @review]) do |f| %>
+              <%= f.input :description %>
+              <%= f.input :score, input_html: { min: 0, max: 5 } %>
+              <%= f.button :submit, class: "btn-success" %>
+            <% end %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+<% end %>
 <!-- # t.bigint "user_id", null: false
     # t.text "description"
     # t.bigint "worker_profile_tag_id", null: false

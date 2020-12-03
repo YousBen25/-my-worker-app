@@ -37,7 +37,7 @@
       <div class="col-md-4 booking-container">
         <h2>Book Now</h2>
         <%= simple_form_for [@worker_profile, @booking] do |f| %>
-        <%= f.association :worker_profile_tag, collection: @worker_profile.tags %>
+        <%= f.association :worker_profile_tag, collection: @worker_profile.worker_profile_tags.map { |wpt|  [wpt.tag.name, wpt.id]  }  %>
         <div data-workingdays="<%= @working_hash.to_json %>" id = "working-days"></div>
         <%= f.input :date, as: :string %>
         <ul id = "availabilities"></ul>

@@ -45,13 +45,13 @@ class WorkerProfilesController < ApplicationController
   end
 
   def new
-    authorize @worker_profile
     @worker_profile = WorkerProfile.new
+    authorize @worker_profile
   end
 
   def create
-    authorize @worker_profile
     @worker_profile = WorkerProfile.new(worker_params)
+    authorize @worker_profile
     @worker_profile.user = current_user
     if @worker_profile.save
       redirect_to dashboard_path
@@ -74,6 +74,7 @@ class WorkerProfilesController < ApplicationController
 
   def destroy
     @worker_profile.destroy
+    authorize @worker_profile
     redirect_to "/"
   end
 
