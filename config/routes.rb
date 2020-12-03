@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get '/dashboard', to: 'dashboards#dashboard', as: 'dashboard'
 
   resources :bookings, only: [:show, :edit, :update, :destroy] do
+    resources :payments, only: :new
     resources :reviews, only: [:create]
     member do
       patch :confirm

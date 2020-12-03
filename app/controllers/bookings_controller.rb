@@ -27,7 +27,20 @@ class BookingsController < ApplicationController
     #   )
 
     if @booking.save
-      redirect_to booking_path(@booking)
+      session = Stripe::Checkout::Session.create(
+          payment_method_types: ['card'],
+          line_items: [{
+            name: @worker_profile.user.first_name,
+            amount: @booking.price * 100,
+            currency: 'usd',
+            quantity: 1
+          }],
+          success_url: booking_url(@booking),
+          cancel_url: booking_url(@booking)
+        )
+
+      @booking.update(checkout_session_id: session.id)
+      redirect_to new_booking_payment_path(@booking)
     else
       @working_hash = @worker_profile.calculate_availabilities
       render "worker_profiles/show"
@@ -89,6 +102,21 @@ end
 
   private
 
+
+  def custom_booking_params
+    booking_vars = params[:booking]
+    date = booking_vars["date"].split("-")
+    date = date.map(&:to_i)
+    time = booking_vars["from"].to_i
+    {
+      description: booking_vars["description"],
+      date: DateTime.new(date[0], date[1], date[2], time),
+      duration: booking_vars["duration"],
+      address: booking_vars["address"],
+      state: "pending"
+    }
+  end
+
   def generate_date
     return nil if params[:booking]["date"].blank? ||  params[:booking]["from"].blank?
     date = params[:booking]["date"].split("-")
@@ -106,14 +134,4 @@ end
   end
 end
 
-# t.bigint "user_id", null: false
-    # t.text "description"
-    # t.bigint "worker_profile_tag_id", null: false
-    # t.boolean "confirmation", default: false
-    # t.datetime "date"
-    # t.integer "duration"
-    # t.integer "price"
-    # t.datetime "created_at", precision: 6, null: false
-    # t.datetime "updated_at", precision: 6, null: false
-    # t.index ["user_id"], name: "index_bookings_on_user_id"
-    # t.index ["worker_profile_tag_id"], name: "index_bookings_on_worker_profile_tag_id"
+end
