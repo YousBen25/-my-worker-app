@@ -9,7 +9,7 @@
             <% @booking_made.each do |booking| %>
               <li>
                 <div class="card-product mb-2 rounded">
-                  <% if @worker_profile.user.photo.attached?%>
+                  <% if booking.worker_profile_tag.worker_profile.user.photo.attached? %>
                     <%= cl_image_tag(booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
                   <% else %>
                     <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
@@ -41,7 +41,7 @@
               <% @booking_received.each do |booking| %>
                   <li>
                     <div class="card-product mb-2 rounded">
-                      <% if @worker_profile.user.photo.attached?%>
+                      <% if booking.worker_profile_tag.worker_profile.user.photo.attached? %>
                         <%= cl_image_tag(booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
                       <% else %>
                         <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
