@@ -18,4 +18,8 @@ class BookingPolicy < ApplicationPolicy
   def update?
     edit?
   end
+
+  def confirm?
+    record.worker_profile_tag.worker_profile.user == user
+  end
 end
