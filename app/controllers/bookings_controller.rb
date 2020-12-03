@@ -38,10 +38,12 @@ class BookingsController < ApplicationController
     if @booking.latitude && @booking.longitude
       @booking_location =[ {
         lat: @booking.latitude,
-        lng: @booking.longitude
+        lng: @booking.longitude,
+        infoWindow: render_to_string(partial: "infowindow", locals: { booking: @booking }),
+        image_url: helpers.asset_url('https://www.flaticon.com/svg/static/icons/svg/832/832233.svg')
       }]
+    end
   end
-end
 
   def edit
     @worker_profile = @booking.worker_profile_tag.worker_profile
