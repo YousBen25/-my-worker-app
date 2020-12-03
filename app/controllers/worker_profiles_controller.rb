@@ -1,5 +1,6 @@
 class WorkerProfilesController < ApplicationController
   before_action :set_worker_profile, only: [:show, :edit, :update, :destroy]
+  skip_before_action :authenticate_user!, only: [:index, :show]
 
   def index
     if params[:address].present? && params[:job_type].present?
@@ -21,6 +22,7 @@ class WorkerProfilesController < ApplicationController
   end
 
   def show
+    authorize @worker_profile
     @user = current_user
     @booking = Booking.new
     @working_hash = @worker_profile.calculate_availabilities
@@ -38,10 +40,12 @@ class WorkerProfilesController < ApplicationController
   end
 
   def new
+    authorize @worker_profile
     @worker_profile = WorkerProfile.new
   end
 
   def create
+    authorize @worker_profile
     @worker_profile = WorkerProfile.new(worker_params)
     @worker_profile.user = current_user
     if @worker_profile.save
@@ -52,11 +56,13 @@ class WorkerProfilesController < ApplicationController
   end
 
   def edit
+    authorize @worker_profile
     @worker_profile_tag = WorkerProfileTag.new
     @availability = Availability.new
   end
 
   def update
+    authorize @worker_profile
     @worker_profile.update(worker_params)
     redirect_to edit_worker_profile_path(@worker_profile)
   end
