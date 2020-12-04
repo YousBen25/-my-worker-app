@@ -17,7 +17,7 @@
     <div class="row justify-content-start">
       <% @worker_profiles.each do |worker_profile| %>
 
-      <div class="col-md-12 col-lg-6">
+      <div class="col-md-10 col-lg-6">
         <div class="card mt-5 w-100 h-95", style = "background-color: white">
           <div class = "container">
             <div class="row">
@@ -37,7 +37,7 @@
               <span class="fa fa-star"></span>
               <% end %>
 
-              <p class = "mb-0">Skills :
+              <p class = "mb-0">
                 <% worker_profile.worker_profile_tags.each_with_index do |worker_profile_tag, idx| %>
                 <strong><%=worker_profile_tag.tag.name%></strong><%if (idx + 1) == worker_profile.worker_profile_tags.length%><% else %>,<% end %>
                 <% end %>

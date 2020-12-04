@@ -27,7 +27,7 @@ puts "start seeding"
     email: Faker::Internet.email,
     password: "password")
   if rand(0..1) == 1
-    worker_profile = WorkerProfile.create!(user: user, bio: "#{Faker::Quote} #{Faker::Quote.famous_last_words}", address: address_arr.sample)
+    worker_profile = WorkerProfile.create!(user: user, bio: "#{Faker::Quote::matz} #{Faker::Quote.famous_last_words}", address: address_arr.sample)
     # tag_arr = ["Babysitting","Plumbing", "Landscaping", "Driving", "Housekeeping", "Cooking"]
     a = (0..5).to_a.sort{ rand() - 0.5 }[0..2]
     a.each do |i|
