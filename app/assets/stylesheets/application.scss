@@ -64,3 +64,28 @@
 .centered {
   text-align: center;
 }
+
+.btn-success {
+  background-color: #ffd369;
+  padding: 7px;
+}
+
+.btn-success:hover {
+  background-color:#e9ce8d;
+}
+
+#btn-black {
+  background-color: black;
+  padding: 7px;
+  color: white;
+}
+
+#btn-black:hover {
+  text-decoration: none;  
+}
+
+#address-input {
+  .algolia-places {
+    width: 100%;
+  }
+}
