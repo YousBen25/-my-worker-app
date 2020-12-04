@@ -31,6 +31,7 @@ import { initFlatpickr } from '../plugins/initflatpickr.js'
 import { initMapbox } from '../plugins/init_mapbox';
 import { initAutocomplete  } from '../plugins/init_autocomplete.js';
 import { initUpdateNavbarOnScroll  } from '../components/navbar.js';
+import { loadDynamicBannerText } from '../components/banner';
 
 
 // Internal imports, e.g:
@@ -42,6 +43,7 @@ document.addEventListener('turbolinks:load', () => {
   initFlatpickr();
   initAutocomplete();
   initUpdateNavbarOnScroll();
+  loadDynamicBannerText();
 });
 
 

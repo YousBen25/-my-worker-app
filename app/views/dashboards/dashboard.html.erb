@@ -21,6 +21,9 @@
       <div class="row">
         <div class="col-md-9">
           <div class = "bookings">
+            <% if @booking_made.count.zero? %>
+            <p class="text-center">No bookings for the moment</p>
+            <% else%>
             <ul>
             <% @booking_made.each do |booking| %>
               <li>
@@ -49,6 +52,7 @@
               </li>
             <% end %>
             </ul>
+            <%  end%>
           </div>
         </div>
       </div>
@@ -110,7 +114,7 @@
           <%= link_to "Profile", edit_user_registration_path, class: "btn btn-info mr-2" %>
           <%= link_to "Preview", worker_profile_path(@worker_profile), class: "btn btn-info" %>
         <% else %>
-          <%= link_to "Profile", edit_user_registration_path, class: "btn btn-success mb-2" %>
+          <%= link_to "Profile", edit_user_registration_path, class: "btn btn-info" %>
         <% end %>
 
           </div>
