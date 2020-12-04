@@ -44,7 +44,7 @@
             <%= simple_form_for([@booking, @review]) do |f| %>
               <%= f.input :description %>
               <%= f.input :score, input_html: { min: 0, max: 5 } %>
-              <%= f.button :submit, class: "btn-success" %>
+              <%= f.button :submit, class: "btn-success mb-5" %>
             <% end %>
         </div>
       <% end %>
