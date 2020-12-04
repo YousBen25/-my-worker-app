@@ -1,11 +1,20 @@
-.navbar-lewagon {
+.navbar {
   justify-content: space-between;
-  background: #6eb9e7;
   width: 100vw;
+  display: flex;
 }
 
-.navbar-lewagon .navbar-collapse {
+.navbar-lewagon {
+  background-color: transparent;
+  transition: 0.3s background-color ease;
+}
+
+.navbar-collapse {
   flex-grow: 0;
+}
+
+.navbar-lewagon-assistme {
+  background-image: url('https://res.cloudinary.com/djevcywps/image/upload/v1606864546/driver_cdgjui.jpg');
 }
 
 .navbar-lewagon .navbar-brand img {
@@ -20,6 +29,16 @@
 
 
 .welcome-text {
-  color: darkblue;
+  color: beige !important;
   font-weight: 900;
+}
+
+.logo-container {
+  display: flex;
+  color: beige;
+  align-items: flex-end;
+}
+
+.welcome-text-container {
+  margin-left: -153px;
 }

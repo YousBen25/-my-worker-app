@@ -2,7 +2,8 @@ class WorkerProfileTag < ApplicationRecord
   belongs_to :worker_profile
   belongs_to :tag
   has_many :bookings, dependent: :destroy
-  validates :worker_profile_id, presence: true
+  validates :worker_profile_id, presence: true, uniqueness: {  scope: :tag,
+                                      message: "You can't add several times same tag" }
   validates :tag_id, presence: true
   validates :rate, presence: true
   validates :rate, numericality: {greater_than_or_equal_to: 1}
