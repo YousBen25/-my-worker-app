@@ -3,7 +3,7 @@ class WorkerProfilesController < ApplicationController
 
   skip_before_action :authenticate_user!, only: [:index, :show]
 
-  DISTANCE = 2000
+  DISTANCE = 1000
   def index
     @tags = Tag.all
     if params[:address].present? && params[:job_type].present?
