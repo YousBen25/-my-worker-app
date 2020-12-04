@@ -7,12 +7,18 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 require 'faker'
+
+
+
+
 Tag.create!(name: "Plumbing")
 Tag.create!(name: "Landscaping")
 Tag.create!(name: "Driving")
 Tag.create!(name: "Housekeeping")
 Tag.create!(name: "Cooking")
 Tag.create!(name: "Babysitting")
+
+address_arr = ["Gianyar", "Singaraja", "Nusa Dua", "Amlapura", "Denpasar", "Kuta Utara", "Ubud"]
 
 puts "start seeding"
 50.times do
@@ -21,9 +27,11 @@ puts "start seeding"
     email: Faker::Internet.email,
     password: "password")
   if rand(0..1) == 1
-    worker_profile = WorkerProfile.create!(user: user, bio: "some bio", address: Faker::Address.community)
-    rand(1..3).times do
-      WorkerProfileTag.create!(rate: rand(10..50), worker_profile: worker_profile, tag: Tag.all.sample)
+    worker_profile = WorkerProfile.create!(user: user, bio: "some bio", address: address_arr.sample)
+    # tag_arr = ["Babysitting","Plumbing", "Landscaping", "Driving", "Housekeeping", "Cooking"]
+    a = (0..5).to_a.sort{ rand() - 0.5 }[0..2]
+    a.each do |i|
+      WorkerProfileTag.create!(rate: rand(10..50), worker_profile: worker_profile, tag: Tag.all[i])
     end
   end
   puts "seeding user"
@@ -38,7 +46,7 @@ puts "start seeding bookings"
     date: Date.today + rand(0..30),
     duration: rand(1..5),
     price: 100,
-    address: 'Paris'
+    address: address_arr.sample
     )
   review = Review.create!(
     score: rand(1..5),

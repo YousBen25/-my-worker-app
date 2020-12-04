@@ -1,14 +1,29 @@
 
-<h1 class="py-5">Your Dashboard</h1>
-<div class="container", style = "margin-top: 15px">
-  <div class="row">
-    <div class="col-md-9">
-        <div class = "bookings">
-          <h3>Requested Bookings</h3>
-          <ul>
+<h1 class="py-5" style="
+    margin-bottom: -28px">Your Dashboard</h1>
+
+<ul class="nav nav-tabs" id="myTab" role="tablist">
+  <li class="nav-item">
+    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Bookings made</a>
+  </li>
+  <% if @worker_profile %>
+  <li class="nav-item">
+    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Bookings received</a>
+  </li>
+  <% end %>
+  <li class="nav-item">
+    <a class="nav-link" id="contact-tab" data-toggle="tab" href="#contact" role="tab" aria-controls="contact" aria-selected="false">Settings</a>
+  </li>
+</ul>
+<div class="tab-content" id="myTabContent">
+  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+    <div class="container", style = "margin-top: 15px">
+      <div class="row">
+        <div class="col-md-9">
+          <div class = "bookings">
+            <ul>
             <% @booking_made.each do |booking| %>
               <li>
-
                 <div class="card-product mb-2 rounded">
                   <% if booking.worker_profile_tag.worker_profile.user.photo.attached? %>
                     <%= cl_image_tag(booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
@@ -34,87 +49,74 @@
               </li>
             <% end %>
             </ul>
-        </div>
-        <% if @worker_profile %>
-          <div class = "bookings">
-            <h3>Received Bookings</h3>
-            <ul>
-              <% @booking_received.each do |booking| %>
-                  <li>
-                    <div class="card-product mb-2 rounded">
-                      <% if booking.worker_profile_tag.worker_profile.user.photo.attached? %>
-                        <%= cl_image_tag(booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
-                      <% else %>
-                        <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
-                      <% end %>
-                      <div class="card-product-infos">
-                      <%= link_to booking_path(booking) do %>
-                        <h2><%= booking.description %></h2>
-                      <% end %>
-                        <p>Your name: <%= booking.user.first_name %></p>
-                        <p>Date: <%= booking.date %></p>
-                        <p>Price: <%= booking.price %></p>
-                        <div class = "d-flex justify-content-end">
-                          <% if booking.confirmation? %>
-                            <p>You confirmed the booking</p>
-                          <% else %>
-                            <%= link_to "confirm",  confirm_booking_path(booking), method: :patch, class: "btn btn-success" %>
-                          <% end %>
-                        </div>
-                      </div>
-                    </div>
-                  </li>
-                <% end %>
-              </ul>
           </div>
-        <% end %>
+        </div>
       </div>
-      <div class="col-md-3">
-        <h3>Settings:</h3>
-        <% if current_user.worker_profile %>
-          <%= link_to "Availabilities & tags", edit_worker_profile_path(@worker_profile), class: "btn btn-success mb-2" %>
-          <%= link_to "Profile", edit_user_registration_path, class: "btn btn-success mb-2" %>
-          <%= link_to "Preview", worker_profile_path(@worker_profile), class: "btn btn-success mb-2" %>
+    </div>
+  </div>
+  <% if @worker_profile %>
+  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+    <div class="container", style = "margin-top: 15px">
+      <div class="row">
+        <div class="col-md-9">
+          <div class = "bookings">
+            <% if @booking_received.count.zero?%>
+              <p class="text-center">No bookings for the moment</p>
+            <% else %>
+                <div class = "bookings">
+                  <ul>
+                    <% @booking_received.each do |booking| %>
+                        <li>
+                          <div class="card-product mb-2 rounded">
+                            <% if booking.worker_profile_tag.worker_profile.user.photo.attached? %>
+                              <%= cl_image_tag(booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
+                            <% else %>
+                              <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
+                            <% end %>
+                            <div class="card-product-infos">
+                            <%= link_to booking_path(booking) do %>
+                              <h2><%= booking.description %></h2>
+                            <% end %>
+                              <p>Your name: <%= booking.user.first_name %></p>
+                              <p>Date: <%= booking.date %></p>
+                              <p>Price: <%= booking.price %></p>
+                              <div class = "d-flex justify-content-end">
+                                <% if booking.confirmation? %>
+                                  <p>You confirmed the booking</p>
+                                <% else %>
+                                  <%= link_to "confirm",  confirm_booking_path(booking), method: :patch, class: "btn btn-success" %>
+                                <% end %>
+                              </div>
+                            </div>
+                          </div>
+                        </li>
+                      <% end %>
+                    </ul>
+                </div>
+            <%  end %>
+          </div>
+        </div>
+      </div>
+      </div>
+  </div>
+  <% end %>
+  <div class="tab-pane fade" id="contact" role="tabpanel" aria-labelledby="contact-tab">
+    <div class="container", style = "margin-top: 15px">
+      <div class="row">
+        <div class="col-md-9">
+          <div class = "bookings d-flex justify-content-center">
+            <% if current_user.worker_profile %>
+          <%= link_to "Availabilities & tags", edit_worker_profile_path(@worker_profile), class: "btn btn-info mr-2" %>
+          <%= link_to "Profile", edit_user_registration_path, class: "btn btn-info mr-2" %>
+          <%= link_to "Preview", worker_profile_path(@worker_profile), class: "btn btn-info" %>
         <% else %>
           <%= link_to "Profile", edit_user_registration_path, class: "btn btn-success mb-2" %>
         <% end %>
+
+          </div>
+        </div>
+      </div>
       </div>
   </div>
 </div>
-
-
-<!--   create_table "bookings", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.text "description"
-    t.bigint "worker_profile_tag_id", null: false
-    t.boolean "confirmation", default: false
-    t.datetime "date"
-    t.integer "duration"
-    t.integer "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_bookings_on_user_id"
-    t.index ["worker_profile_tag_id"], name: "index_bookings_on_worker_profile_tag_id"
-  end -->
-
-
-
-
-
-
-
-<!--   create_table "bookings", force: :cascade do |t|
-    t.bigint "user_id", null: false
-    t.text "description"
-    t.bigint "worker_profile_tag_id", null: false
-    t.boolean "confirmation", default: false
-    t.datetime "date"
-    t.integer "duration"
-    t.integer "price"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["user_id"], name: "index_bookings_on_user_id"
-    t.index ["worker_profile_tag_id"], name: "index_bookings_on_worker_profile_tag_id"
-  end -->
-
 
