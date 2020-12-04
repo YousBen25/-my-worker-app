@@ -38,9 +38,10 @@
               <% end %>
 
               <p class = "mb-0">
-                <% worker_profile.worker_profile_tags.each_with_index do |worker_profile_tag, idx| %>
+                <% worker_profile.worker_profile_tags.first(2).each_with_index do |worker_profile_tag, idx| %>
                 <strong><%=worker_profile_tag.tag.name%></strong><%if (idx + 1) == worker_profile.worker_profile_tags.length%><% else %>,<% end %>
                 <% end %>
+                <% if worker_profile.worker_profile_tags.length > 2 %>...<%end%>
               </p>
               <p class = "card-service-area", style = "margin-top: 2px"><%= worker_profile.address %></p>
               </div>
