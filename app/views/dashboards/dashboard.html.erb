@@ -88,7 +88,7 @@
                                 <% if booking.confirmation? %>
                                   <p>You confirmed the booking</p>
                                 <% else %>
-                                  <%= link_to "confirm",  confirm_booking_path(booking), method: :patch, class: "btn btn-success" %>
+                                  <%= link_to "confirm",  confirm_booking_path(booking), method: :patch, class: "btn btn-success text-left" %>
                                 <% end %>
                               </div>
                             </div>
