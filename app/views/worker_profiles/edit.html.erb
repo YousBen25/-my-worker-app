@@ -2,6 +2,7 @@
   <div class="row d-flex justify-content-center py-4">
     <div class="col-md-6">
       <h1>Hey <%= @worker_profile.user.first_name %>, your profile should always be up to date</h1>
+      <hr>
       <br>
       <h2>Update your bio:</h2>
       <%= render "form", worker_profile: @worker_profile %>
@@ -25,7 +26,7 @@
         </ul>
        <h2>What's your availabilities:</h2>
         <%= simple_form_for([@worker_profile, @availability], remote: true) do |f| %>
-          <%= f.input :day, input_html: {min: 0} %>
+          <%= f.input :day, input_html: {min: 1, max: 7} %>
           <%= f.input :from, as: :integer, input_html: {min: 1} %>
           <%= f.input :to, as: :integer, input_html: {min: 1} %>
           <%= f.button :submit, class: "btn-success" %>
