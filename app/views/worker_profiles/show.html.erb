@@ -4,7 +4,7 @@
       <div class="col-md-8 profile-container d-flex">
         <div class = "d-flex", style = "flex-direction: column; width: 100%">
         <div class = "d-flex justify-content-between", style="width:100%">
-          <div class="p-4" style="flex-grow: 1">
+          <div  style="flex-grow: 1">
             <h2><%= @worker_profile.user.first_name%>, <%= @worker_profile.user.last_name%></h2>
             <div class="tags-container">
               <ul class="d-flex">
@@ -34,6 +34,7 @@
         </div>
         </div>
       </div>
+      <% if @worker_profile.user != current_user %>
       <div class="col-md-4 booking-container">
         <h2>Book Now</h2>
         <%= simple_form_for [@worker_profile, @booking] do |f| %>
@@ -48,6 +49,7 @@
         <%= f.submit %>
         <% end %>
       </div>
+      <% end %>
     </div>
   </div>
   <div class="row">

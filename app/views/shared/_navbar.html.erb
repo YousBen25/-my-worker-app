@@ -25,7 +25,7 @@
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
         <% if policy(WorkerProfile).create? %>
-          <%= link_to "Become a worker!", new_worker_profile_path, class: "nav-link" %>
+          <%= link_to "Become a worker", new_worker_profile_path, class: "become-worker"%>
         <% end %>
       </li>
       <li class="nav-item dropdown">

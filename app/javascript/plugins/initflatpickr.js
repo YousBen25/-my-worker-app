@@ -3,7 +3,10 @@ import flatpickr from "flatpickr";
 
 
 const injectThings = (availabilities, times) => {
-  const list = availabilities[`${times}`].map((time) =>`<li>Availability: ${time}</li>` )
+  const list = availabilities[`${times}`].map((time) =>`<li style="
+    border: 1px solid lightgrey;
+    background-color: aquamarine;
+    margin-right: 122px;">Available from ${time}</li>` )
   const input = document.querySelector('#availabilities')
   input.innerHTML = list.join("")
 }
