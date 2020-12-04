@@ -65,6 +65,19 @@
   text-align: center;
 }
 
+
+.main-container{
+  display: flex;
+}
+
+.cards{
+  padding-right: 15px;
+  padding-left: 15px;
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
+
 .btn-success {
   background-color: #ffd369;
   padding: 7px;

@@ -1,23 +1,82 @@
-<div class=" mt-5 mb-5 mx-0 d-flex justify-content-between", style= "width: 100%">
+<% tag_arr = ["Babysitting","Plumbing", "Landscaping", "Driving", "Housekeeping", "Cooking"] %>
 
-  <div class="cards ml-5" style="grid-template-columns: 1fr ">
-    <div class="">
-      <ul>
-        <div id='job-booking', style="text-align:center; margin-bottom: 20px">
-          <form action="<%= worker_profiles_path%>" class = "search-form">
-            <input type="text" name = "address" placeholder = 'Address' id = "booking-address-home">
-            <select name="job_type" id="job-date-search" placeholder = "Job Type">
-              <% @tags.each do |tag| %>
-                <option value=<%=tag.name%>><%= tag.name.capitalize %></option>
+<div class = "main-container mb-5 mt-5">
+
+  <div class="container ml-5 mr-5">
+    <div id='job-booking mt-5', style = "margin-top: 30px;text-align: center;">
+      <form action="<%= worker_profiles_path%>" class = "search-form">
+        <input type="text" name = "address" placeholder = 'Address' id = "booking-address-home">
+        <select name="job_type" id="job-date-search" placeholder = "Job Type">
+          <% tag_arr.each do |tag| %>
+          <option value=<%=tag%>><%= tag.capitalize %></option>
+          <%end%>
+        </select>
+        <input type="submit" value = "Search for Work">
+      </form>
+    </div>
+    <div class="row justify-content-start">
+      <% @worker_profiles.each do |worker_profile| %>
+
+      <div class="col-md-12 col-lg-6">
+        <div class="card mt-5 w-100 h-95", style = "background-color: white">
+          <div class = "container">
+            <div class="row">
+            <div class="card-service-picture col mt-3">
+              <% if worker_profile.user.photo.attached?%>
+              <%= cl_image_tag(worker_profile.user.photo.key,:width=>100, :height=>100, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
+              <% else %>
+              <%= cl_image_tag("worker_usd45y",:width=>100, :height=>100, :gravity=>"face", :radius=>"max", :crop=>"thumb") %>
               <% end %>
-            </select>
-            <input type="submit" value = "Search for Work">
-          </form>
-         </div>
-        <% @worker_profiles.each do |worker_profile| %>
+            </div>
+            <div class="card-body">
+              <h5><%=worker_profile.user.first_name%> <%=worker_profile.user.last_name%></h5>
+              <%worker_profile.average_score.times do |i|%>
+              <span class="fa fa-star checked"></span>
+              <% end %>
+              <%(5-worker_profile.average_score).times do |i|%>
+              <span class="fa fa-star"></span>
+              <% end %>
+
+              <p class = "mb-0">Skills :
+                <% worker_profile.worker_profile_tags.each_with_index do |worker_profile_tag, idx| %>
+                <strong><%=worker_profile_tag.tag.name%></strong><%if (idx + 1) == worker_profile.worker_profile_tags.length%><% else %>,<% end %>
+                <% end %>
+              </p>
+              <p class = "card-service-area", style = "margin-top: 2px"><%= worker_profile.address %></p>
+              </div>
+            </div>
+          </div>
+          <%= link_to worker_profile_path(worker_profile) do %>
+            <button class="btn btn-dark w-100">Book Now!</button>
+          <% end %>
+        </div>
+      </div>
+
+      <% end %>
+
+
+    </div>
+  </div>
+
+
+  <!-- Change the token below (https://www.mapbox.com/account/access-tokens/) -->
+  <div id="map"
+  style="width: 900px; height: 100vh; position: sticky; top: 0"
+  data-markers="<%= @markers.to_json %>"
+  data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>">
+</div>
+</div>
+
+
+
+
+
+
+<!--         <% @worker_profiles.each do |worker_profile| %>
 
         <li>
-          <div class = "container">
+
+       <div class = "container">
             <div class="card-service">
               <div class="card-service-picture col">
                 <% if worker_profile.user.photo.attached?%>
@@ -60,18 +119,17 @@
           </div>
         </div>
         <br>
+
       </li>
-      <% end %>
-    </ul>
+
+
+      <% end %> -->
+<!--     </ul>
   </div>
 
 </div>
+-->
 
-<div id="map"
-     style="width: 700px; height: 100vh; position: sticky; top: 0"
-     data-markers="<%= @markers.to_json %>"
-     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
-</div>
 
 
 
