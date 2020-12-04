@@ -19,3 +19,14 @@ class AvailabilitiesController < ApplicationController
     params.require(:availability).permit(:day, :from, :to )
   end
 end
+
+
+create_table "availabilities", force: :cascade do |t|
+  t.integer "day"
+  t.bigint "worker_profile_id", null: false
+  t.datetime "created_at", precision: 6, null: false
+  t.datetime "updated_at", precision: 6, null: false
+  t.time "from"
+  t.time "to"
+  t.index ["worker_profile_id"], name: "index_availabilities_on_worker_profile_id"
+end

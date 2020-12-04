@@ -77,6 +77,7 @@
   flex-grow: 1;
   grid-template-columns: 1fr 1fr;
   grid-gap: 16px;
+}
 
 .btn-success {
   background-color: #ffd369;
@@ -94,7 +95,7 @@
 }
 
 #btn-black:hover {
-  text-decoration: none;  
+  text-decoration: none;
 }
 
 #address-input {
