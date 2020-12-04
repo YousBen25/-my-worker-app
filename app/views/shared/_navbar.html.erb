@@ -1,13 +1,15 @@
-<div class="navbar navbar-expand-sm navbar-light navbar-lewagon">
+<div class="navbar navbar-expand-sm navbar-light  fixed-top <%=   action_name == "home" ? "navbar-lewagon" : "navbar-lewagon-assistme" %>">
   <a class="navbar-brand" href= "<%= root_path %>">
-    <img src="https://img.icons8.com/ios/2x/kitchen--v1.png" />
-    <img src="https://cdn.onlinewebfonts.com/svg/img_464447.png" />
-    <img src="https://cdn.onlinewebfonts.com/svg/img_448264.png" />
+    <div class="logo-container">
+    <p>Service</p>
+      <%= cl_image_tag("Group_1_sq3goj",:width=>50, :height=>50) %>
+    <p>Champion</p>
+    </div>
   </a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
-  <div>
+  <div class="welcome-text-container">
     <ul class = "navbar-nav centrals">
     <li class = "nav-item">
       <a class="nav-link welcome-text">

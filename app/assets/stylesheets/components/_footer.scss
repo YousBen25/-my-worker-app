@@ -1,5 +1,5 @@
 .footer {
-  background: #6eb9e7;
+  background: black;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -27,4 +27,26 @@
 }
 .footer .fa-heart {
   color: #D23333;
+}
+
+.footer-container{
+    display: flex;
+    align-items: baseline;
+    width: 104%;
+    justify-content: space-between;
+}
+
+.footer-copyright {
+  display: flex;
+  align-items: baseline;
+  color: beige;
+  i {
+    font-size: 13px;
+  }
+}
+
+.footer-links {
+  a {
+    color: beige;
+  }
 }
