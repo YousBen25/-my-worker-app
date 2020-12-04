@@ -1,17 +1,22 @@
 
 <% tag_arr = ["Babysitting","Plumbing", "Landscaping", "Driving", "Housekeeping", "Cooking"] %>
 <div class="home-banner" style="background-image: linear-gradient(rgba(0,0,0,0.2),rgba(0,0,0,0.2)), url(' <%= cl_image_path "driver_cdgjui" %>')">
-  <h1 class="mb-3">AssistMe</h1>
-  <div id='job-booking'>
-    <form action="<%= worker_profiles_path%>" class = "search-form">
-      <input type="text" name = "address" placeholder = 'Address' id = "booking-address-home">
-      <select name="job_type" id="job-date-search" placeholder = "Job Type">
-        <% tag_arr.each do |tag| %>
-          <option value=<%=tag%>><%= tag.capitalize %></option>
-        <%end%>
-      </select>
-      <input type="submit" value = "Search for Work">
-    </form>
+  <div class="container-banner">
+    <div class="container-banner-text">
+    <h1 class="mb-3">Thousands of champions for your small jobs and home services</h1>
+    <p>Easy.Fast.Cheap.</p>
+    </div>
+    <div id='job-booking'>
+      <form action="<%= worker_profiles_path%>" class = "search-form">
+        <input type="text" name = "address" placeholder = 'Address' id = "booking-address-home">
+        <select name="job_type" id="job-date-search" placeholder = "Job Type">
+          <% tag_arr.each do |tag| %>
+            <option value=<%=tag%>><%= tag.capitalize %></option>
+          <%end%>
+        </select>
+        <input type="submit" value = "Search for Work">
+      </form>
+    </div>
    </div>
 </div>
 

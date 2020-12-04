@@ -8,7 +8,6 @@ const initUpdateNavbarOnScroll = () => {
         navbar.classList.remove('navbar-lewagon-assistme');
       }
     });
-    navbar.classList.add('navbar-lewagon-assistme');
   }
 }
 
