@@ -2,40 +2,41 @@
   <div class="row d-flex justify-content-center py-4">
     <div class="col-md-6">
       <h1>Hey <%= @worker_profile.user.first_name %>, your profile should always be up to date</h1>
+      <hr>
       <br>
       <h2>Update your bio:</h2>
       <%= render "form", worker_profile: @worker_profile %>
        <p><%= @worker_profile.bio %></p>
       <br>
       <h2>Add  new tag:</h2>
-        <%= simple_form_for([@worker_profile, @worker_profile_tag]) do |f| %>
+        <%= simple_form_for([@worker_profile, @worker_profile_tag], remote: true) do |f| %>
           <%= f.input :tag, collection: Tag.all, input_html: { class: 'multiple-select' }, include_hidden: false %>
-          <%= f.input :rate %>
+          <%= f.input :rate, input_html: {min: 1} %>
           <%= f.button :submit, class: "btn-success" %>
         <% end %>
         <ul>
           <% @worker_profile.worker_profile_tags.each do |worker_profile_tag| %>
             <li>
               <span><%= worker_profile_tag.tag.name %>, <%= worker_profile_tag.rate %></span>
-              <%= link_to worker_profile_tag_path(worker_profile_tag), method: :delete, class: "delete" do %>
-                <i class="fas fa-times text-white"></i>
+              <%= link_to worker_profile_tag_path(worker_profile_tag), method: :delete, remote: true, class: "delete", data: {confirm: "Are you sure?"} do %>
+                <i class="fas fa-times"></i>
               <% end %>
             </li>
           <% end %>
         </ul>
        <h2>What's your availabilities:</h2>
-        <%= simple_form_for([@worker_profile, @availability]) do |f| %>
-          <%= f.input :day %>
-          <%= f.input :from, as: :integer%>
-          <%= f.input :to, as: :integer%>
+        <%= simple_form_for([@worker_profile, @availability], remote: true) do |f| %>
+          <%= f.input :day, input_html: {min: 1, max: 7} %>
+          <%= f.input :from, as: :integer, input_html: {min: 1} %>
+          <%= f.input :to, as: :integer, input_html: {min: 1} %>
           <%= f.button :submit, class: "btn-success" %>
         <% end %>
         <ul>
           <%@worker_profile.availabilities.each do |availability| %>
             <li>
               <span>Day: <%= availability.day %>,from: <%= availability.from %> to: <%= availability.to %></span>
-              <%= link_to availability_path(availability), method: :delete, class: "delete" do %>
-                <i class="fas fa-times text-white"></i>
+              <%= link_to availability_path(availability), method: :delete, remote: true, class: "delete", data: {confirm: "Are you sure?"} do %>
+                <i class="fas fa-times"></i>
               <% end %>
             </li>
           <% end %>
