@@ -22,7 +22,7 @@
 
 </div>
 
-<% if @booking.date >= @booking.date + 1.day %>
+<% if @booking.date <= Date.today + 1.day %>
   <div class="container mt-5">
     <div class="row">
       <% if @booking.review%>

@@ -19,4 +19,3 @@ class AvailabilitiesController < ApplicationController
     params.require(:availability).permit(:day, :from, :to )
   end
 end
-
