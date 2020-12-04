@@ -27,7 +27,7 @@
 }
 
 #content-wrap {
-  padding-bottom: 10rem;    /* Footer height */
+  padding-bottom: 5rem;    /* Footer height */
 }
 
 #booking-wrapper{
@@ -63,4 +63,17 @@
 
 .centered {
   text-align: center;
+}
+
+.main-container{
+  display: flex;
+}
+
+.cards{
+  padding-right: 15px;
+  padding-left: 15px;
+  display: grid;
+  flex-grow: 1;
+  grid-template-columns: 1fr 1fr;
+  grid-gap: 16px;
 }
