@@ -1,6 +1,6 @@
-<div class="container mt-5 mb-5">
+<div class=" mt-5 mb-5 mx-0 d-flex justify-content-between", style= "width: 100%">
 
-  <div class="cards" style="grid-template-columns: 1fr ">
+  <div class="cards ml-5" style="grid-template-columns: 1fr ">
     <div class="">
       <ul>
         <div id='job-booking', style="text-align:center; margin-bottom: 20px">
@@ -9,7 +9,7 @@
             <select name="job_type" id="job-date-search" placeholder = "Job Type">
               <% @tags.each do |tag| %>
                 <option value=<%=tag.name%>><%= tag.name.capitalize %></option>
-              <%end%>
+              <% end %>
             </select>
             <input type="submit" value = "Search for Work">
           </form>
@@ -56,16 +56,6 @@
                 <%break%>
                 <% end %>
                 <% end %>
-
-                <!-- <div class ="card-service-review review-two">
-                  <h2>Soerjadi</h2>
-                  <p class = "review-content">Now my pool is beyond repair. Thanks for nothing, bro</p>
-                </div>
-                <div class ="card-service-review review-three">
-                  <h2>Kuze</h2>
-                  <p class = "review-content">Hard working guy, my garden is now Zen-certified</p>
-                </div> -->
-
             </div>
           </div>
         </div>
@@ -74,6 +64,14 @@
       <% end %>
     </ul>
   </div>
+
 </div>
+
+<div id="map"
+     style="width: 700px; height: 100vh; position: sticky; top: 0"
+     data-markers="<%= @markers.to_json %>"
+     data-mapbox-api-key="<%= ENV['MAPBOX_API_KEY'] %>"></div>
+</div>
+
 
 
