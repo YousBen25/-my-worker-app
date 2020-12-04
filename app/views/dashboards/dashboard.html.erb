@@ -73,7 +73,7 @@
                         <li>
                           <div class="card-product mb-2 rounded">
                             <% if booking.worker_profile_tag.worker_profile.user.photo.attached? %>
-                              <%= cl_image_tag(booking.worker_profile_tag.worker_profile.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
+                              <%= cl_image_tag(booking.user.photo.key,:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
                             <% else %>
                               <%= cl_image_tag("worker_usd45y",:width=>200, :height=>200, :gravity=>"face", :crop=>"thumb") %>
                             <% end %>
