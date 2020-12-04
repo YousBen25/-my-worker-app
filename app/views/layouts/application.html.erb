@@ -21,10 +21,10 @@
   <body>
     <%= render "shared/navbar" %>
     <div id="page-container" class= "<%= 'pt-5' unless current_page?("/") %>">
-    <div id="content-wrap">
-      <%= yield %>
-    </div>
-    <%= render "shared/footer" %>
+      <div id="content-wrap">
+        <%= yield %>
+      </div>
+      <%= render "shared/footer" %>
     </div>
   </body>
 </html>
